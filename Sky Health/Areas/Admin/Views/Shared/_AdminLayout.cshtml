@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - لوحة تحكم Sky Health</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/images/logo.png" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <div class="sidebar-wrapper" id="sidebar-wrapper">
+            <div class="sidebar-heading">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none d-flex align-items-center justify-content-center">
+                    <img src="~/images/logo.png" alt="Logo" height="140" style="background:#fff;border-radius:15px;padding:3px;" class="sidebar-logo" />
+                </a>
+            </div>
+            <div class="list-group list-group-flush">
+                <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="list-group-item list-group-item-action"><i class="fas fa-tachometer-alt fa-fw me-3"></i><span>لوحة التحكم</span></a>
+                <a asp-area="Admin" asp-controller="OrdersAdmin" asp-action="Index" class="list-group-item list-group-item-action"><i class="fas fa-receipt fa-fw me-3"></i><span>الطلبات</span></a>
+                <a asp-area="Admin" asp-controller="ProductsAdmin" asp-action="Index" class="list-group-item list-group-item-action"><i class="fas fa-box-open fa-fw me-3"></i><span>المنتجات</span></a>
+                <a asp-area="Admin" asp-controller="BlogsAdmin" asp-action="Index" class="list-group-item list-group-item-action"><i class="fas fa-file-alt fa-fw me-3"></i><span>المدونات</span></a>
+                <a asp-area="Admin" asp-controller="ShippingZonesAdmin" asp-action="Index" class="list-group-item list-group-item-action"><i class="fas fa-shipping-fast fa-fw me-3"></i><span>مناطق الشحن</span></a>
+                <a asp-area="Admin" asp-controller="PharmacyCodesAdmin" asp-action="Index" class="list-group-item list-group-item-action"><i class="fas fa-key fa-fw me-3"></i><span>أكواد الصيدليات</span></a>
+            </div>
+            <div class="sidebar-footer">
+                <div class="dropdown">
+                    <a href="~/OrdersAdmin/Index" class="sidebar-footer-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="far fa-bell fa-fw"></i>
+                        <span>التنبيهات</span>
+                        <span class="badge rounded-pill bg-danger ms-auto" id="notification-badge" style="display: none;">
+                            <span id="notification-count">0</span>
+                        </span>
+                    </a>
+            </div>
+            <div class="sidebar-footer-link">
+                <i class="fas fa-moon fa-fw"></i>
+                <span>الوضع الداكن</span>
+                <div class="form-check form-switch ms-auto">
+                        <input class="form-check-input" type="checkbox" id="dark-mode-toggle">
+                </div>
+            </div>
+            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Logout" class="sidebar-footer-link">
+                <i class="fas fa-sign-out-alt fa-fw"></i>
+                <span>تسجيل الخروج</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <button class="btn btn-light" id="menu-toggle"><i class="fas fa-bars"></i></button>
+                <div class="d-flex flex-end gap-3">
+                 <a class="dropdown-item" asp-area="Admin" asp-controller="ProductsAdmin" asp-action="Create"><i class="fas fa-box-open fa-fw me-2 text-primary"></i>إضافة منتج</a>
+                 <a class="dropdown-item" asp-area="Admin" asp-controller="BlogsAdmin" asp-action="Create"><i class="fas fa-file-alt fa-fw me-2 text-success"></i>إضافة مقال</a>
+                 <a class="dropdown-item" asp-area="Admin" asp-controller="Dashboard" asp-action="Logout"><i class="fas fa-sign-out-alt fa-fw me-2 text-danger"></i>تسجيل الخروج</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container-fluid p-4" style="z-index: 1;position: relative;">
+            @RenderBody()
+        </main>
+
+      </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const menuToggle = document.getElementById("menu-toggle");
+            if (menuToggle) {
+                menuToggle.addEventListener("click", function(e) { e.preventDefault(); document.getElementById("wrapper").classList.toggle("toggled"); });
+            }
+            const darkModeToggle = document.getElementById('dark-Mode-Toggle');
+            const applyTheme = () => {
+                if (localStorage.getItem('theme') === 'dark') {
+                    document.body.classList.add('dark-mode');
+                    if(darkModeToggle) darkModeToggle.checked = true;
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    if(darkModeToggle) darkModeToggle.checked = false;
+                }
+            };
+            if(darkModeToggle) {
+                darkModeToggle.addEventListener('change', function() { localStorage.setItem('theme', this.checked ? 'dark' : 'light'); applyTheme(); });
+            }
+            applyTheme();
+
+            const notificationBadge = document.getElementById('notification-badge');
+            const notificationCount = document.getElementById('notification-count');
+
+            function updateNotificationUI(message, orderId, isRealtime) {
+                const sidebarListContainer = document.getElementById('notification-items-container');
+                if (sidebarListContainer) {
+                    const noSidebarItem = document.getElementById('no-notification-item');
+                    if (noSidebarItem) noSidebarItem.remove();
+
+                    const newDropdownItemLI = document.createElement('li');
+                    newDropdownItemLI.innerHTML = `<a class="dropdown-item" href="/Admin/OrdersAdmin/Details/${orderId}">${message}</a>`;
+
+                    if (isRealtime) {
+                        sidebarListContainer.prepend(newDropdownItemLI);
+                    } else {
+                        sidebarListContainer.append(newDropdownItemLI);
+                    }
+                }
+
+             
+                const dashboardList = document.getElementById('dashboard-notification-list');
+                if (dashboardList) {
+                    const noDashboardItem = document.getElementById('dashboard-no-notification-item');
+                    if (noDashboardItem) noDashboardItem.remove();
+
+                    const newActivityItem = document.createElement('li');
+                    newActivityItem.className = 'activity-item';
+                    newActivityItem.innerHTML = `
+                        <div class="activity-icon bg-primary text-white"><i class="fas fa-receipt"></i></div>
+                        <div class="activity-content">
+                            <p><a href="/Admin/OrdersAdmin/Details/${orderId}" class="text-decoration-none" style="color: var(--heading-color);">${message}</a></p>
+                            <small class="text-muted">${new Date().toLocaleTimeString('ar-EG')}</small>
+                        </div>
+                    `;
+                    if (isRealtime) {
+                        dashboardList.prepend(newActivityItem);
+                    } else {
+                        dashboardList.append(newActivityItem);
+                    }
+                }
+            }
+
+            function updateCount(newCount) {
+                if (notificationBadge && notificationCount) {
+                    notificationCount.innerText = newCount;
+                    notificationBadge.style.display = newCount > 0 ? 'inline-flex' : 'none';
+                }
+            }
+
+            async function loadInitialNotifications() {
+                try {
+                    const response = await fetch('/Admin/OrdersAdmin/GetNewOrders');
+                    if (!response.ok) return;
+
+                    const newOrders = await response.json();
+                    updateCount(newOrders.length);
+
+                    if (newOrders.length > 0) {
+                        newOrders.forEach(order => {
+                            const message = `طلب جديد #${order.id} من ${order.customerName}`;
+                            updateNotificationUI(message, order.id, false);
+                        });
+                    }
+                } catch (e) {
+                    console.error("Could not fetch initial notifications.", e);
+                }
+            }
+
+            function setupSignalR() {
+                try {
+                    const connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").build();
+
+                    connection.on("ReceiveNotification", function (message, orderId) {
+                        let count = parseInt(notificationCount.innerText) || 0;
+                        updateCount(count + 1);
+                        updateNotificationUI(message, orderId, true);
+                    });
+
+                    connection.start().catch(err => console.error("SignalR Connection Error: ", err.toString()));
+                } catch (e) {
+                    console.error("SignalR initialization failed: ", e);
+                }
+            }
+
+            loadInitialNotifications();
+            setupSignalR();
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

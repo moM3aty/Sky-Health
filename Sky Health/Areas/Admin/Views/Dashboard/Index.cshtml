@@ -1,0 +1,325 @@
+﻿@model Sky_Health.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "لوحة التحكم";
+}
+
+<!-- Page Header -->
+<div class="page-header mb-4">
+    <h1 class="page-title">لوحة التحكم</h1>
+</div>
+
+<!-- Stat Cards -->
+<div class="row">
+    <div class="col-xl-3 col-md-6">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title">إجمالي المبيعات</h5>
+                    <p class="stat-number">@Model.TotalSales.ToString("N2") <small>جنيه</small></p>
+                </div>
+                <i class="fas fa-dollar-sign stat-icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title">الطلبات الجديدة</h5>
+                    <p class="stat-number">@Model.NewOrdersCount</p>
+                </div>
+                <i class="fas fa-receipt stat-icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title">عدد المنتجات</h5>
+                    <p class="stat-number">@Model.ProductsCount</p>
+                </div>
+                <i class="fas fa-box-open stat-icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title">عدد الأقسام</h5>
+                    <p class="stat-number">@Model.CategoriesCount</p>
+                </div>
+                <i class="fas fa-tags stat-icon"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Sales Chart -->
+    <div class="col-xl-5">
+        <div class="card">
+            <div class="card-header">
+                أرباح آخر 7 أيام
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Categories Chart -->
+    <div class="col-xl-3">
+        <div class="card">
+            <div class="card-header">
+                الأكثر مبيعاً
+            </div>
+            <div class="card-body">
+                <div class="chart-pie">
+                    <canvas id="topCategoriesChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Feed -->
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-header">
+                <i class="far fa-bell me-2"></i>تنبيهات جديدة
+            </div>
+            <div class="card-body">
+                <ul class="activity-feed" id="dashboard-notification-list">
+                    <li class="activity-item" id="dashboard-no-notification-item">
+                        <div class="activity-icon bg-secondary text-white"><i class="fas fa-info"></i></div>
+                        <div class="activity-content">
+                            <p>لا توجد تنبيهات جديدة حالياً</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Latest Orders -->
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                آخر الطلبات
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>رقم الطلب</th>
+                                <th>اسم العميل</th>
+                                <th>الإجمالي</th>
+                                <th>تاريخ الطلب</th>
+                                <th>الحالة</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model.LatestOrders)
+                            {
+                                <tr>
+                                    <td><span class="fw-bold text-primary">#@order.Id</span></td>
+                                    <td>@order.CustomerName</td>
+                                    <td>@order.TotalAmount.ToString("N2") جنيه</td>
+                                    <td>@order.OrderDate.ToString("g")</td>
+                                    <td>
+                                        @{
+                                            var statusClass = "badge-soft-secondary";
+                                            switch (order.OrderStatus)
+                                            {
+                                                case "جديد": statusClass = "badge-soft-info"; break;
+                                                case "مدفوع":
+                                                case "تم التوصيل": statusClass = "badge-soft-success"; break;
+                                                case "فشل الدفع":
+                                                case "ملغي": statusClass = "badge-soft-danger"; break;
+                                                case "قيد التجهيز":
+                                                case "تم الشحن": statusClass = "badge-soft-warning"; break;
+                                            }
+                                        }
+                                        <span class="badge @statusClass">@order.OrderStatus</span>
+                                    </td>
+                                    <td><a asp-action="Details" asp-controller="OrdersAdmin" asp-route-id="@order.Id" class="btn btn-sm btn-light border"><i class="fas fa-eye"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Activity Feed -->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                آخر الأنشطة
+            </div>
+            <div class="card-body">
+                <ul class="activity-feed">
+                    @foreach (var activity in Model.RecentActivities)
+                    {
+                        <li class="activity-item">
+                            <div class="activity-icon @activity.IconBgClass text-white"><i class="@activity.IconClass"></i></div>
+                            <div class="activity-content">
+                                <p>@activity.Description</p>
+                                <small class="text-muted">@activity.Timestamp.ToString("g")</small>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            let gridColor, tickColor, primaryColor, chartBorderColor;
+
+            const setChartColors = () => {
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                gridColor = isDarkMode ? 'rgba(255, 255, 255, 0.1)' : '#e5e7eb';
+                tickColor = isDarkMode ? '#9ca3af' : '#6b7280';
+                chartBorderColor = isDarkMode ? '#1f2937' : '#fff';
+                primaryColor = '#6366f1';
+            };
+
+            setChartColors();
+
+            // ===== Sales Chart (Line Chart) =====
+            const ctxSales = document.getElementById("salesChart")?.getContext('2d');
+            if (!ctxSales) return;
+
+            const salesGradient = ctxSales.createLinearGradient(0, 0, 0, 300);
+            salesGradient.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
+            salesGradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+
+            const salesChart = new Chart(ctxSales, {
+                type: 'line',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.SalesChartLabels)),
+                    datasets: [{
+                        label: "الأرباح",
+                        data: @Html.Raw(Json.Serialize(Model.SalesChartData)),
+                        backgroundColor: salesGradient,
+                        borderColor: primaryColor,
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: primaryColor,
+                        pointHoverRadius: 6,
+                        pointHoverBackgroundColor: primaryColor,
+                        pointHoverBorderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: gridColor, drawBorder: false },
+                            ticks: { color: tickColor, padding: 10 }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: tickColor, padding: 10 }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#111827',
+                            titleFont: { weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            padding: 12,
+                            cornerRadius: 6,
+                            displayColors: false
+                        }
+                    }
+                }
+            });
+
+            // ===== Top Categories Chart (Doughnut Chart) =====
+            const ctxCategories = document.getElementById("topCategoriesChart")?.getContext('2d');
+            if (!ctxCategories) return;
+
+            const topCategoriesChart = new Chart(ctxCategories, {
+                type: 'doughnut',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.TopCategoriesChartLabels)),
+                    datasets: [{
+                        data: @Html.Raw(Json.Serialize(Model.TopCategoriesChartData)),
+                        backgroundColor: ['#6366f1', '#10b981', '#0ea5e9', '#f59e0b', '#ef4444'],
+                        borderColor: chartBorderColor,
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '80%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            align: 'center',
+                            labels: {
+                                color: tickColor,
+                                padding: 20,
+                                usePointStyle: true,
+                                pointStyle: 'circle'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#111827',
+                            titleFont: { weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            padding: 12,
+                            cornerRadius: 6,
+                            displayColors: true
+                        }
+                    }
+                }
+            });
+
+            // --- Update chart colors on theme change ---
+            // The main dark mode toggle is in _Layout.cshtml, so we listen for its changes
+            const mainDarkModeToggle = window.parent.document.getElementById('darkModeToggle');
+            if(mainDarkModeToggle) {
+                 mainDarkModeToggle.addEventListener('change', function() {
+                    // Use a short timeout to allow the body class to update
+                    setTimeout(() => {
+                        setChartColors();
+
+                        // Update Sales Chart
+                        salesChart.options.scales.y.grid.color = gridColor;
+                        salesChart.options.scales.y.ticks.color = tickColor;
+                        salesChart.options.scales.x.ticks.color = tickColor;
+
+                        // Update Categories Chart
+                        topCategoriesChart.options.plugins.legend.labels.color = tickColor;
+                        topCategoriesChart.data.datasets[0].borderColor = chartBorderColor;
+
+                        salesChart.update();
+                        topCategoriesChart.update();
+                    }, 50);
+                });
+            }
+        });
+    </script>
+}

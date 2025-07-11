@@ -1,0 +1,33 @@
+﻿@model Sky_Health.Models.Product
+@{
+    ViewData["Title"] = "حذف المنتج";
+}
+
+<div class="page-header">
+    <h1 class="page-title">حذف المنتج</h1>
+</div>
+
+<div class="alert alert-danger">
+    <h4 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>تأكيد الحذف</h4>
+    <p>هل أنت متأكد أنك تريد حذف المنتج "<strong class="fw-bold">@Model.Name</strong>" بشكل نهائي؟ لا يمكن التراجع عن هذا الإجراء.</p>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">اسم المنتج</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+
+            <dt class="col-sm-3">القسم</dt>
+            <dd class="col-sm-9">@Model.Category.Name</dd>
+
+            <dt class="col-sm-3">السعر</dt>
+            <dd class="col-sm-9">@Model.Price.ToString("N2") جنيه</dd>
+        </dl>
+        <form asp-action="Delete" class="mt-4">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash me-2"></i>نعم، قم بالحذف</button>
+            <a asp-action="Index" class="btn btn-light">إلغاء</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Sky_Health.Models.ShippingZone>
+@{
+    ViewData["Title"] = "إدارة مناطق الشحن";
+}
+
+<div class="d-flex justify-content-evenly align-items-center mb-4">
+    <h1 class="page-title mb-0">إدارة مناطق الشحن</h1>
+    <div class="d-flex align-items-center">
+        <form asp-action="Index" method="get" class="me-2">
+            <div class="input-group">
+                <input type="text" name="searchTerm" class="form-control" placeholder="بحث باسم المنطقة..." value="@ViewData["CurrentFilter"]">
+                <button class="btn btn-outline-secondary" type="submit" style="border-color: var(--border-color);"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <a asp-action="Create" class="btn btn-primary d-flex align-items-center">
+            <i class="fas fa-plus me-2"></i>إضافة منطقة
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>اسم المنطقة</th>
+                        <th>سعر الشحن</th>
+                        <th class="text-center">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Price.ToString("N2") جنيه</td>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-circle btn-outline-primary" title="تعديل"><i class="fas fa-pen"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-circle btn-outline-danger ms-1" title="حذف"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

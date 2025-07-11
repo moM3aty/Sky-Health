@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "الدخول لقسم الصيدليات";
+}
+
+<div class="container section-padding text-center" style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
+    <div class="row justify-content-center w-100">
+        <div class="col-md-6">
+            <h2 class="title mb-4">قسم الصيدليات</h2>
+            <p class="text-muted mb-4">هذا القسم مخصص لأصحاب الصيدليات فقط. يرجى إدخال كود الدخول للمتابعة.</p>
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">@TempData["Error"]</div>
+            }
+
+            <form asp-action="VerifyCode" method="post">
+                <div class="mb-3">
+                    <input type="password" name="accessCode" class="form-control form-control-lg text-center" placeholder="أدخل كود الدخول هنا" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">دخول</button>
+            </form>
+        </div>
+    </div>
+</div>

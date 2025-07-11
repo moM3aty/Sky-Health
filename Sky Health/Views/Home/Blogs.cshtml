@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Sky_Health.Models.Blog>
+@{
+    ViewData["Title"] = "المدونة";
+}
+<style>
+.btn-read-more{
+        color: #042e81 !important;
+        border: 1px solid #042e81;
+    }
+
+    .btn-read-more:hover{
+        background-color: #042e81 !important;
+        border: 1px solid #fff;
+        color:#fff !important;
+        
+    }
+</style>
+<div class="container-fluid section-padding blog-page-container">
+    <div class="text-center">
+        <h2 class="title mb-5">مقالات طبية</h2>
+    </div>
+    <div class="p-2 mx-5">
+        <div class="row p-0 m-0">
+            @foreach (var blog in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card blog-card h-100">
+                        <a asp-action="BlogDetails" asp-controller="Home" asp-route-id="@blog.Id" class="blog-card-img-container">
+                            <img width="100%" src="@(blog.ImageUrl ?? "/images/placeholder.png")" alt="@blog.Title">
+                        </a>
+                        <div class="card-body">
+                            <small class="text-muted">@blog.CreatedDate.ToString("dd MMMM, yyyy")</small>
+                            <h5 class="card-title mt-2">@blog.Title</h5>
+                            <p class="card-text">@blog.Content.Substring(0, Math.Min(blog.Content.Length, 120))...</p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-action="BlogDetails" asp-controller="Home" asp-route-id="@blog.Id" class="blog-card-img-container btn btn-outline-primary w-100 btn-read-more">اقرأ المزيد ...</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+﻿@model Sky_Health.Models.Product
+@{
+    ViewData["Title"] = "إضافة منتج جديد";
+}
+
+<div class="page-header">
+    <h1 class="page-title">إضافة منتج جديد</h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Price" class="form-label"></label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="OldPrice" class="form-label"></label>
+                            <input asp-for="OldPrice" class="form-control" />
+                            <span asp-validation-for="OldPrice" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-9 mb-3">
+                            <label asp-for="CategoryId" class="form-label"></label>
+                            <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId" id="categorySelect"></select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end mb-3">
+                            <button type="button" class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i class="fas fa-plus"></i> قسم جديد</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Type" class="form-label"></label>
+                            <select asp-for="Type" class="form-select" asp-items="Html.GetEnumSelectList<ProductType>()"></select>
+                            <span asp-validation-for="Type" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check form-switch pt-4 mt-2">
+                                <input class="form-check-input" type="checkbox" asp-for="IsFeatured">
+                                <label class="form-check-label" asp-for="IsFeatured"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">صورة المنتج</label>
+                        <input type="file" name="imageFile" class="form-control" />
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save me-2"></i>إنشاء المنتج</button>
+                        <a asp-action="Index" class="btn btn-light">إلغاء</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">إضافة قسم جديد</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><input type="text" id="newCategoryName" class="form-control" placeholder="اسم القسم الجديد" /></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button><button type="button" id="saveCategoryBtn" class="btn btn-primary">حفظ</button></div></div></div></div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $('#saveCategoryBtn').on('click', function() {
+            var categoryName = $('#newCategoryName').val();
+            if(categoryName) {
+                $.post('@Url.Action("AddCategory", "ProductsAdmin")', { categoryName: categoryName }, function(data) {
+                    if(data.success) {
+                        $('#categorySelect').append(new Option(data.name, data.id, true, true)).trigger('change');
+                        $('#addCategoryModal').modal('hide');
+                        $('#newCategoryName').val('');
+                    } else { alert('فشل حفظ القسم'); }
+                });
+            }
+        });
+    </script>
+}
+

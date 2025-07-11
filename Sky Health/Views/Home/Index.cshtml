@@ -1,0 +1,222 @@
+﻿@model Sky_Health.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "الرئيسية";
+}
+<header id ="home">
+    <div class="container hero-content" data-aos="fade-up" data-aos-delay="100">
+        <h1>رحلتك نحو العناية تبدأ من هنا</h1>
+        <p>نوفر لك كل ما تحتاجه من مستلزمات طبية عالية الجودة لمساعدتك على الرعاية، الوقاية، والتعافي بثقة وأمان.</p>
+        <a href="#products" class="btn primary-btn btn-lg">تصفح الآن</a>
+    </div>
+</header>
+<section class="offers-section text-center section-padding">
+    <div class="container" data-aos="fade" data-aos-delay="100">
+        <h2 class="title mb-5 fw-bold">💥 العروض المميزة 💥</h2>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper pb-5">
+                @foreach (var product in Model.FeaturedProducts)
+                {
+                    <div class="swiper-slide h-100">
+                        @await Html.PartialAsync("_ProductCard", product)
+                    </div>
+                }
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</section>
+<section class="section-padding about" id="about">
+    <div class="container">
+        <div class="row g-4 justify-content-center align-items-center">
+            <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                <div class="content">
+                    <h2 class="title">
+                        نبذه عنا
+                    </h2>
+                    <p class="text-muted lh-lg mt-4">
+                        تأسست شركة سكاي هيلث ميديكال عام 2023، ونالت شهرة واسعة كاول متجر الكترونى لبيع المستلزمات الطبيه بسعر الجمله وموزّع رائد للمستلزمات الطبية والصيدلانية والعيادية على مستوى  جمهوريه مصر العربيه تتخصّص الشركة في توريد مجموعة واسعة من المنتجات المتطورة التي تشمل كل مستلزمات الصيدليه من مستلزمات عامه واجهزه قياسات مختلفه  بالإضافة إلى المعدات المخبرية والمستهلكات الطبية للمستشفيات والعيادات والمختبرات
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                <div class="img shadow-lg">
+                    <img src="~/images/about1.jpg" class="img-fluid rounded" alt="about-us">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-padding second-section">
+    <div class="container py-5">
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-box">
+                    <div class="icon">
+                        <i class="fas fa-truck feature-icon"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>توصيل سريع وآمن</h3>
+                        <p>لكافة أنحاء الجمهورية خلال 48 ساعة</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-box">
+                    <div class="icon">
+                        <i class="fas fa-shield-halved feature-icon"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>دفع آمن 100٪</h3>
+                        <p>طرق دفع متعددة بحماية مشددة</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-box">
+                    <div class="icon">
+                        <i class="fas fa-percent feature-icon"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>عروض حصرية</h3>
+                        <p>خصومات دورية على منتجات مختارة</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<section class="vision-services-section section-padding" id="vision">
+    <div class="container text-center">
+        <h2 class="title text-center mb-4">رؤيتنا وخدماتنا</h2>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4 box" data-aos="zoom-in" data-aos-delay="100">
+                <div class="p-2 bg-white rounded shadow-sm h-100">
+                    <div class="image-container">
+                        <img src="~/images/vision.jpg" alt="رؤية طبية" class="rounded mb-3">
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="fw-bold mb-3">رؤيتنا</h3>
+                        <p class="text-muted">
+                            تعمل سكاي هيلث ميديكال وفق رؤية طموحة ترتكز على تأمين أفضل المنتجات المستوردة والمحلية من كبرى الشركات المصنّعة، ومستلزمات المعامل وأجهزتها.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="p-2 bg-white rounded shadow-sm h-100 box">
+                    <div class="image-container">
+                        <img src="~/images/clients.jpg" alt="محفظة عملاء" class=" rounded mb-3">
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="fw-bold mb-3">محفظة العملاء</h3>
+                        <p class="text-muted">
+                            تشمل عملاء الشركة المستشفيات والعيادات والمختبرات وسلاسل الصيدليات—شبكة توزيع متكاملة وسريعة الاستجابة.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="p-2 bg-white rounded shadow-sm h-100 box">
+                    <div class="image-container">
+                        <img src="~/images/vision3.jpg" alt="حلول التنظيم والإمداد" class=" rounded mb-3">
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="fw-bold mb-3">حلول شاملة في التنظيم والإمداد</h3>
+                        <p class="text-muted">
+                            إلى جانب التوريد، تقدم سكاي هيلث ميديكال دعمًا للتسويق، المبيعات، وخدمة التوصيل الآمن لكل المنتجات.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="section-padding counter-section">
+    <div class="container py-5">
+        <div class="row g-4 justify-content-center align-items-center">
+            <div class="col-md-6 col-lg-3" data-aos="slide-up" data-aos-delay="100">
+                <div class="counter-box float-box-second">
+                    <h3 class="counter" data-target="2">0</h3>
+                    <div class="counter-icon"><i class="fas fa-chart-line"></i></div>
+                    <p>سنوات</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="slide-up" data-aos-delay="100">
+                <div class="counter-box float-box-first">
+                    <h3 class="counter" data-target="14345">0</h3>
+                    <div class="counter-icon"><i class="fas fa-user"></i></div>
+                    <p>عملاء</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="slide-up" data-aos-delay="100">
+                <div class="counter-box float-box-first">
+                    <h3 class="counter text-center" data-target="577">0</h3>
+                    <div class="counter-icon"><i class="fas fa-store"></i></div>
+                    <p>متاجر</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="slide-up" data-aos-delay="100">
+                <div class="counter-box float-box-second">
+                    <h3 class="counter" data-target="2874">0</h3>
+                    <div class="counter-icon"><i class="fas fa-shopping-bag"></i></div>
+                    <p>مبيعات</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="products section-padding bg-light" id="products">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="mb-5 title">منتجاتنا</h2>
+        </div>
+
+        @foreach (var categoryGroup in Model.ProductsByCategory)
+        {
+            <div class="category-section mb-5">
+                <h3 class="category-title">@categoryGroup.Key.Name</h3>
+                <div class="row g-4">
+                    @foreach (var product in categoryGroup.Value)
+                    {
+                        <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+                            @await Html.PartialAsync("_ProductCard", product)
+                        </div>
+                    }
+                </div>
+                <div class="text-center mt-4">
+                    <a asp-controller="Products" asp-action="Index" asp-route-categoryId="@categoryGroup.Key.Id" class="btn btn-primary">عرض المزيد في قسم @categoryGroup.Key.Name</a>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="banner">
+                    <div class="banner-content text-end">
+                        <h2 class="h5">ثلاث طبقات</h2>
+                        <h3 class="fw-bold">قناع وجه بتقنية النانو الجديدة</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="second-banner">
+                    <div class="banner-content text-end">
+                        <h2 class="h5">الرعاية الصحية</h2>
+                        <h3 class="fw-bold">قياس درجة حرارة جسم الإنسان</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

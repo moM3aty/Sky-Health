@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Health company</title>
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/cart.css">
+    <link rel="stylesheet" href="~/css/main.css">
+    <link rel="shortcut icon" href="~/images/logo.png" type="image/x-icon">
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100" tabindex="0">
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center g-2" asp-controller="Home" asp-action="Index">
+                <img src="~/images/logo.png" alt="Logo" height="100">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>   
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav mx-auto d-flex gap-3 justify-content-center align-items-center text-center">
+                    <li class="nav-item"><a class="nav-link active" asp-controller="Home" asp-action="Index">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#vision">رؤيتنا</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">المنتجات</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Pharmacy" asp-action="Index">قسم الصيدليات</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Blogs">المدونة</a></li>
+                </ul>
+                <div id="cartButton" class="d-flex align-items-center mt-4 mt-lg-0 justify-content-center justify-content-lg-end">
+                    <a id="cart-icon" class="cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="badge bg-danger">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div id="side-cart" class="side-cart">
+        <div id="cart-content">
+        </div>
+    </div>
+    
+    <div id="cart-overlay" class="cart-overlay"></div>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row gy-4 justify-content-center align-items-center">
+                <div class="col-lg-4">
+                    <div class="img">
+                        <a class="navbar-brand d-flex justify-content-center justify-content-lg-start align-items-center g-2" href="index.html" aria-label="Oxford College logo">
+                            <img src="~/images/logo.png" alt="Logo" height="100" style="background-color:#fff;border-radius:10px;">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
+                        <li class="mb-3"><a href="#home" aria-label="home" class="text-decoration-none">الرئيسية</a></li>
+                        <li class="mb-3"><a href="index.html#about" aria-label="about" class="text-decoration-none">من نحن</a></li>
+                        <li class="mb-3"><a href="index.html#vision" aria-label="vision" class="text-decoration-none">رؤيتنا</a></li>
+                        <li class="mb-3"><a href="index.html#products" aria-label="products" class="text-decoration-none">المنتجات</a></li>
+                        <li class="mb-3"><a href="#blog" aria-label="blog" class="text-decoration-none">المدونه</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <ul class="social-icons list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
+                        <a href="https://www.facebook.com/share/16nVg1yFi7/" target="_blank" class="me-2 text-decoration-none"> <i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/@@sky.health.medica?_t=ZS-8xj9w5Yix43&_r=1" target="_blank" class="me-2 text-decoration-none"> <i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/skyhealthmedical?igsh=MTdsZGk3MXdyOHY0OQ==" target="_blank" class="me-2 text-decoration-none"> <i class="fab fa-instagram"></i></a>
+                    </ul>
+                </div>
+
+            </div>
+            <hr class="my-4 border-light">
+            <div class="text-center small text-white-50">
+                جميع الحقوق محفوظة © 2025 Sky Health.
+            </div>
+            <div class="text-center small text-white-50 mt-4">
+                تم التصميم بواسطة شركة <a aria-label="gwt facebook" href="https://www.facebook.com/profile.php?id=100090592885243&mibextid=ZbWKwL" class="gwt">GMT</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fixed-contact-buttons">
+        <a href="https://wa.me/201080175217" target="_blank" class="whatsapp-button" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <div class="phone-dropdown-wrapper">
+            <button id="phoneToggleBtn" class="phone-button" aria-label="Show phone numbers">
+                <i class="fas fa-phone-alt"></i>
+            </button>
+            <div id="phoneDropdown" class="phone-dropdown">
+                <a href="tel:+201080175217">01080175217</a>
+                <a href="tel:+201080175216">01080175216</a>
+                <a href="tel:+201555320320">01555320320</a>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-scroll">
+        <button id="scrollToTopBtn" title="Go to top" aria-label="Scroll to top" class="scroll-top">
+            <i class="fa-solid fa-angle-up"></i>
+        </button>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/cart.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,24 @@
+﻿@model Sky_Health.Models.PharmacyAccessCode
+@{
+    ViewData["Title"] = "حذف كود الدخول";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="page-title mb-0">حذف كود الدخول</h1>
+    <a asp-action="Index" class="btn btn-light"><i class="fas fa-arrow-right me-2"></i>العودة للقائمة</a>
+</div>
+
+<div class="alert alert-danger">
+    <h4 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>تأكيد الحذف</h4>
+    <p>هل أنت متأكد أنك تريد حذف الكود <code>@Model.Code</code> بشكل نهائي؟ لا يمكن التراجع عن هذا الإجراء.</p>
+</div>
+
+<div class="card">
+    <div class="card-footer bg-transparent text-end">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <a asp-action="Index" class="btn btn-light">إلغاء</a>
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash me-2"></i>نعم، قم بالحذف</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@model Sky_Health.Models.Blog
+@{
+    ViewData["Title"] = Model.Title;
+}
+<div class="container blog-details-page">
+<div class="text-center">
+    <h2 class="title mb-5">مقالات طبية</h2>
+</div>
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="blog-post-main">
+                <!-- Blog Post Header -->
+                <div class="blog-post-header-new">
+                    <p class="blog-category">@Model.Author</p>
+                    <h1 class="blog-title-main">@Model.Title</h1>
+                    <div class="blog-meta-main">
+                        <span>@Model.CreatedDate.ToString("dd MMMM, yyyy")</span>
+                    </div>
+                </div>
+
+                <!-- Blog Post Image -->
+                <div class="blog-image-main my-4">
+                    <img src="@(Model.ImageUrl ?? "/images/hero-bg.jpg")" alt="@Model.Title" class="img-fluid rounded-3">
+                </div>
+
+                <!-- Blog Post Content -->
+                <article class="blog-content-main">
+                    @Html.Raw(Model.Content.Replace("\n", "<br />"))
+                </article>
+            </div>
+        </div>
+    </div>
+</div>

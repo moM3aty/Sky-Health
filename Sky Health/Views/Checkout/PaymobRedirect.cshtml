@@ -1,0 +1,32 @@
+﻿@model Sky_Health.Models.Order
+@{
+    ViewData["Title"] = "الدفع عبر بطاقة ائتمانية";
+}
+
+<div class="container section-padding">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+            <div class="card shadow-sm p-4 p-md-5 text-center">
+                <h3 class="title mb-3">الدفع عبر بطاقة ائتمانية</h3>
+                <p class="text-muted">طلبك رقم <strong class="text-primary">#@Model.Id</strong> جاهز للدفع.</p>
+
+                <div class="my-4">
+                    <p class="fs-5">المبلغ الإجمالي:</p>
+                    <h2 class="fw-bold text-danger">@Model.TotalAmount.ToString("N2") جنيه</h2>
+                </div>
+
+                <hr>
+
+                <div class="alert alert-warning">
+                    <p>سيتم توجيهك الآن إلى صفحة الدفع الآمنة الخاصة بـ Paymob لإتمام العملية.</p>
+                    <div class="spinner-border text-primary my-3" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
+                <p class="mt-4 text-muted small">إذا لم يتم توجيهك تلقائياً خلال 5 ثوانٍ، يرجى الضغط على الزر أدناه.</p>
+                <a href="#" class="btn btn-primary mt-2">الانتقال إلى صفحة الدفع الآن</a>
+            </div>
+        </div>
+    </div>
+</div>

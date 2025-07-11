@@ -1,0 +1,34 @@
+﻿@model Sky_Health.Models.ShippingZone
+@{
+    ViewData["Title"] = "حذف منطقة الشحن";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="page-title mb-0">حذف منطقة الشحن</h1>
+    <a asp-action="Index" class="btn btn-light"><i class="fas fa-arrow-right me-2"></i>العودة للقائمة</a>
+</div>
+
+<div class="alert alert-danger">
+    <h4 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>تأكيد الحذف</h4>
+    <p>هل أنت متأكد أنك تريد حذف المنطقة "<strong class="fw-bold">@Model.Name</strong>" بشكل نهائي؟ لا يمكن التراجع عن هذا الإجراء.</p>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">تفاصيل المنطقة</h5>
+        <dl class="row mt-3 details-list">
+            <dt class="col-sm-3">اسم المنطقة</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+
+            <dt class="col-sm-3">سعر الشحن</dt>
+            <dd class="col-sm-9">@Model.Price.ToString("N2") جنيه</dd>
+        </dl>
+    </div>
+    <div class="card-footer bg-transparent text-end">
+        <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id" method="post">
+            @Html.AntiForgeryToken()
+            <a asp-action="Index" class="btn btn-light">إلغاء</a>
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash me-2"></i>نعم، قم بالحذف</button>
+        </form>
+    </div>
+</div>

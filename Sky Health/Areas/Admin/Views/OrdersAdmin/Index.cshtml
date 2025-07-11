@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Sky_Health.Models.Order>
+@{
+    ViewData["Title"] = "إدارة الطلبات";
+}
+
+<!-- Page Header -->
+<div class="d-flex justify-content-evenly align-items-center mb-4">
+    <h1 class="page-title mb-0">إدارة الطلبات</h1>
+    <form asp-action="Index" method="get">
+        <div class="input-group">
+            <input type="text" name="searchTerm" class="form-control" placeholder="بحث بالاسم أو رقم الطلب..." value="@ViewData["CurrentFilter"]">
+            <button class="btn btn-outline-secondary" type="submit" style="border-color: var(--border-color);"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+</div>
+
+<!-- Orders Table Card -->
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>رقم الطلب</th>
+                        <th>اسم العميل</th>
+                        <th>الإجمالي</th>
+                        <th>تاريخ الطلب</th>
+                        <th>الحالة</th>
+                        <th class="text-center">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><span class="fw-bold text-primary">#@item.Id</span></td>
+                            <td>@item.CustomerName</td>
+                            <td>@item.TotalAmount.ToString("N2") جنيه</td>
+                            <td>@item.OrderDate.ToString("g")</td>
+                            <td>
+                                @{
+                                    var statusClass = "badge-soft-secondary";
+                                    switch (item.OrderStatus)
+                                    {
+                                        case "جديد": statusClass = "badge-soft-info"; break;
+                                        case "مدفوع":
+                                        case "تم التوصيل": statusClass = "badge-soft-success"; break;
+                                        case "فشل الدفع":
+                                        case "ملغي": statusClass = "badge-soft-danger"; break;
+                                        case "قيد التجهيز":
+                                        case "تم الشحن": statusClass = "badge-soft-warning"; break;
+                                    }
+                                }
+                                <span class="badge @statusClass">@item.OrderStatus</span>
+                            </td>
+                            <td class="text-center">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-circle btn-outline-primary" title="عرض التفاصيل"><i class="fas fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+    ViewData["Title"] = "تسجيل الدخول";
+}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/admin-login.css" />
+    <link href="~/images/logo.png" rel="icon" type="image/x-icon" />
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="text-center mb-4">
+                <img src="~/images/logo.png" alt="Logo" height="100" />
+            </div>
+            <form asp-action="Login" method="post">
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger text-center p-2">@ViewBag.Error</div>
+                }
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" name="username" class="form-control" placeholder="اسم المستخدم" required />
+                </div>
+                <div class="input-group mb-4">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <input type="password" name="password" class="form-control" placeholder="كلمة المرور" required />
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">دخول</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

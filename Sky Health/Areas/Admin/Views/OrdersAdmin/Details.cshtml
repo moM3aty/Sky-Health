@@ -1,0 +1,96 @@
+﻿@model Sky_Health.Models.Order
+@{
+    ViewData["Title"] = $"تفاصيل الطلب #{Model.Id}";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="page-title mb-0">تفاصيل الطلب <span class="text-primary">#@Model.Id</span></h1>
+    <a asp-action="Index" class="btn btn-light"><i class="fas fa-arrow-right me-2"></i>العودة لقائمة الطلبات</a>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header">المنتجات المطلوبة</div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>المنتج</th>
+                                <th class="text-center">الكمية</th>
+                                <th class="text-end">سعر الوحدة</th>
+                                <th class="text-end">الإجمالي الفرعي</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <tr>
+                                    <td>@item.ProductName</td>
+                                    <td class="text-center">@item.Quantity</td>
+                                    <td class="text-end">@item.UnitPrice.ToString("N2") جنيه</td>
+                                    <td class="text-end">@((item.Quantity * item.UnitPrice).ToString("N2")) جنيه</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header">بيانات العميل</div>
+            <div class="card-body">
+                <dl class="details-list">
+                    <dt>الاسم:</dt>
+                    <dd>@Model.CustomerName</dd>
+                    <dt>رقم الهاتف:</dt>
+                    <dd><span dir="ltr">@Model.PhoneNumber</span></dd>
+                    <dt>منطقة الشحن:</dt>
+                    <dd>@Model.ShippingZoneName</dd>
+                    <dt>العنوان:</dt>
+                    <dd>@Model.Address</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">ملخص الدفع</div>
+            <div class="card-body">
+                <dl class="row mb-0 details-list">
+                    <dt class="col-6">طريقة الدفع:</dt>
+                    <dd class="col-6 text-end">@Model.PaymentMethod</dd>
+
+                    <dt class="col-6">تكلفة الشحن:</dt>
+                    <dd class="col-6 text-end">@Model.ShippingCost.ToString("N2") جنيه</dd>
+
+                    <hr class="my-2">
+
+                    <dt class="col-6 fs-5">الإجمالي:</dt>
+                    <dd class="col-6 text-end fs-5 fw-bold text-primary">@Model.TotalAmount.ToString("N2") جنيه</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">تحديث حالة الطلب</div>
+            <div class="card-body">
+                <form asp-action="UpdateStatus" method="post">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <div class="input-group">
+                        <select name="status" class="form-select">
+                            <option value="جديد" selected="@(Model.OrderStatus == "جديد")">جديد</option>
+                            <option value="قيد التجهيز" selected="@(Model.OrderStatus == "قيد التجهيز")">قيد التجهيز</option>
+                            <option value="تم الشحن" selected="@(Model.OrderStatus == "تم الشحن")">تم الشحن</option>
+                            <option value="تم التوصيل" selected="@(Model.OrderStatus == "تم التوصيل")">تم التوصيل</option>
+                            <option value="مدفوع" selected="@(Model.OrderStatus == "مدفوع")">مدفوع</option>
+                            <option value="ملغي" selected="@(Model.OrderStatus == "ملغي")">ملغي</option>
+                            <option value="فشل الدفع" selected="@(Model.OrderStatus == "فشل الدفع")">فشل الدفع</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

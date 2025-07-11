@@ -1,0 +1,48 @@
+﻿@model Sky_Health.ViewModels.CartViewModel
+
+<div class="cart-header">
+    <h5 class="cart-title">سلة المشتريات</h5>
+    <button class="close-cart-btn" aria-label="Close">&times;</button>
+</div>
+
+<div class="cart-body">
+    @if (Model != null && Model.Items.Any())
+    {
+        <div class="cart-items-container">
+            @foreach (var item in Model.Items)
+            {
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        <img src="@(item.ImageUrl ?? "/images/product1.jpg")" alt="@item.ProductName" />
+                    </div>
+                    <div class="cart-item-details">
+                        <p class="item-name">@item.ProductName</p>
+                        <p class="item-price">@item.Quantity x @item.Price.ToString("N2") جنيه</p>
+                    </div>
+                    <button class="btn-remove remove-from-cart-btn" data-product-id="@item.ProductId" aria-label="Remove item">&times;</button>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="cart-empty">
+            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+            <p>سلة المشتريات فارغة.</p>
+        </div>
+    }
+</div>
+
+@if (Model != null && Model.Items.Any())
+{
+    <div class="cart-footer">
+        <div class="summary-total">
+            <span>الإجمالي</span>
+            <span>@Model.Total.ToString("N2") جنيه</span>
+        </div>
+        <div class="summary-actions">
+            <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary w-100">إتمام الشراء</a>
+            <button class="btn btn-outline-secondary w-100 close-cart-btn-bottom">متابعة التسوق</button>
+        </div>
+    </div>
+}

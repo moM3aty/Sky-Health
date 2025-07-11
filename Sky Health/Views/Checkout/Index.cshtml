@@ -1,0 +1,211 @@
+﻿@model Sky_Health.ViewModels.CheckoutViewModel
+@{
+    ViewData["Title"] = "إتمام الشراء";
+}
+<style>
+
+    .checkout-page-container {
+        padding-top: 120px;
+        background-color: #f8f9fa;
+    }
+
+        .checkout-page-container h4 {
+            font-weight: 600;
+            color: #343a40;
+            margin-bottom: 1rem;
+        }
+
+    .checkout-form .form-label {
+        font-weight: 500;
+        font-size: 1rem;
+        color: #495057;
+    }
+
+    .checkout-form .form-control,
+    .checkout-form .form-select {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #ced4da;
+    }
+
+        .checkout-form .form-control:focus,
+        .checkout-form .form-select:focus {
+            border-color: var(--primary, #6366f1);
+            box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25);
+        }
+
+    .payment-methods .form-check {
+        border: 1px solid #e5e7eb;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.75rem;
+        transition: all 0.2s ease;
+    }
+
+        .payment-methods .form-check:hover {
+            border-color: var(--primary, #6366f1);
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+
+    .payment-methods .form-check-input {
+        float: right;
+        margin-left: 0.75rem;
+    }
+
+    .payment-methods .form-check-label {
+        font-weight: 500;
+        font-size: 1.05rem;
+    }
+
+    .order-summary-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        background-color: #fff;
+        padding: 1.5rem;
+    }
+
+        .order-summary-card .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .order-summary-card .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #111827;
+        }
+
+</style>
+<div class="container section-padding">
+    <h2 class="title text-center mb-5">إتمام عملية الشراء</h2>
+
+    @if (ViewBag.IsCartEmpty == true || Model.Cart == null || !Model.Cart.Items.Any())
+    {
+        <div class="text-center">
+            <i class="fas fa-shopping-cart fa-4x text-muted mb-3"></i>
+            <h4 class="text-muted">سلة المشتريات فارغة</h4>
+            <p>لا يمكنك إتمام الشراء لأن سلتك فارغة.</p>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-3">العودة للتسوق</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-5">
+            <div class="col-md-7">
+                <h4>بيانات الشحن</h4>
+                <hr />
+                <form asp-action="PlaceOrder" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <div class="mb-3">
+                        <label asp-for="CustomerName" class="form-label">الاسم بالكامل</label>
+                        <input asp-for="CustomerName" class="form-control" />
+                        <span asp-validation-for="CustomerName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Address" class="form-label">العنوان بالتفصيل</label>
+                        <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="PhoneNumber" class="form-label">رقم الهاتف</label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ShippingZoneId" class="form-label">منطقة الشحن</label>
+                        <select asp-for="ShippingZoneId" class="form-select" asp-items="ViewBag.ShippingZones" id="shippingZoneSelect">
+                            <option value="">-- اختر منطقة --</option>
+                        </select>
+                        <span asp-validation-for="ShippingZoneId" class="text-danger"></span>
+                    </div>
+
+                    <h4 class="mt-5">طريقة الدفع</h4>
+                    <hr />
+                    <div class="payment-methods">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="PaymentMethod" id="cod" value="CashOnDelivery" checked>
+                            <label class="form-check-label" for="cod">الدفع عند الاستلام</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="PaymentMethod" id="vodafone" value="VodafoneCash">
+                            <label class="form-check-label" for="vodafone">فودافون كاش</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="PaymentMethod" id="instapay" value="InstaPay">
+                            <label class="form-check-label" for="instapay">انستا باي</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="PaymentMethod" id="wepay" value="WePay">
+                            <label class="form-check-label" for="wepay">وي باي</label>
+                        </div>
+                    </div>
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">تأكيد الطلب</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-5">
+                <h4>ملخص الطلب</h4>
+                <hr />
+                <div class="card">
+                    <div class="card-body">
+                        @foreach (var item in Model.Cart.Items)
+                        {
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>@item.ProductName x @item.Quantity</span>
+                                <span>@item.Subtotal.ToString("N2") جنيه</span>
+                            </div>
+                        }
+                        <hr />
+                        <div class="d-flex justify-content-between">
+                            <span>المجموع الفرعي</span>
+                            <span>@Model.Cart.Total.ToString("N2") جنيه</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>الشحن</span>
+                            <span id="shippingCost">0.00 جنيه</span>
+                        </div>
+                        <hr />
+                        <div class="d-flex justify-content-between fw-bold fs-5">
+                            <span>الإجمالي</span>
+                            <span id="totalCost">@Model.Cart.Total.ToString("N2") جنيه</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        var zonesJson = ViewData["ShippingZonesJson"] as string;
+    }
+    <script>
+        $(document).ready(function() {
+            const shippingZones = @Html.Raw(zonesJson ?? "[]");
+            const subtotal = @(Model.Cart?.Total ?? 0);
+
+            $('#shippingZoneSelect').on('change', function() {
+                const zoneId = $(this).val();
+                let shippingPrice = 0;
+                if (zoneId) {
+                    const selectedZone = shippingZones.find(z => z.id == zoneId);
+                    if(selectedZone) {
+                        shippingPrice = selectedZone.price;
+                    }
+                }
+
+                $('#shippingCost').text(shippingPrice.toFixed(2) + ' جنيه');
+                const total = subtotal + shippingPrice;
+                $('#totalCost').text(total.toFixed(2) + ' جنيه');
+            });
+        });
+    </script>
+}
+    

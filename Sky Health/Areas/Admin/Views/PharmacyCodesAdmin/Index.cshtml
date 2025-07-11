@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Sky_Health.Models.PharmacyAccessCode>
+@{
+    ViewData["Title"] = "إدارة أكواد الصيدليات";
+}
+
+<div class="d-flex justify-content-evenly align-items-center mb-4">
+    <h1 class="page-title mb-0">إدارة أكواد الصيدليات</h1>
+    <div class="d-flex align-items-center">
+        <form asp-action="Index" method="get" class="me-2">
+            <div class="input-group">
+                <input type="text" name="searchTerm" class="form-control" placeholder="بحث بالكود..." value="@ViewData["CurrentFilter"]">
+                <button class="btn btn-outline-secondary" type="submit" style="border-color: var(--border-color);"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-primary d-flex align-items-center"><i class="fas fa-plus me-2"></i>إنشاء كود جديد</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>الكود</th>
+                        <th>الحالة</th>
+                        <th class="text-center">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><code class="fs-6">@item.Code</code></td>
+                                <td>
+                                    @if (item.IsActive)
+                                    {
+                                        <span class="badge badge-soft-success">فعال</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-soft-secondary">غير فعال</span>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-circle @(item.IsActive ? "btn-outline-warning" : "btn-outline-success") toggle-status-btn" data-id="@item.Id" title="@(item.IsActive ? "إلغاء التفعيل" : "تفعيل")">
+                                        <i class="fas fa-power-off"></i>
+                                    </button>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-circle btn-outline-danger ms-1" title="حذف"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center py-4">لا توجد أكواد حالياً.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const toggleButtons = document.querySelectorAll('.toggle-status-btn');
+            const token = document.querySelector('form[action="/Admin/PharmacyCodesAdmin/Create"] input[name="__RequestVerificationToken"]')?.value;
+
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+
+                    fetch('@Url.Action("ToggleStatus", "PharmacyCodesAdmin")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'RequestVerificationToken': token
+                        },
+                        body: `id=${id}`
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            location.reload();
+                        } else {
+                            console.error('An error occurred while toggling the status.');
+                        }
+                    })
+                    .catch(error => console.error('Fetch error:', error));
+                });
+            });
+        });
+    </script>
+}
+

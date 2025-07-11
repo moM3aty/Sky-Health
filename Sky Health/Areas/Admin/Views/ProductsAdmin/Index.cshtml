@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Sky_Health.Models.Product>
+@{
+    ViewData["Title"] = "إدارة المنتجات";
+}
+
+<!-- Page Header -->
+<div class="d-flex justify-content-evenly align-items-center mb-4">
+    <h1 class="page-title mb-0">إدارة المنتجات</h1>
+    <div class="d-flex align-items-center">
+        <!-- Search Form -->
+        <form asp-action="Index" method="get" class="me-2">
+            <div class="input-group">
+                <input type="text" name="searchTerm" class="form-control" placeholder="بحث عن منتج..." value="@ViewData["CurrentFilter"]">
+                <button class="btn btn-outline-secondary" type="submit" style="border-color: var(--border-color);"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <!-- Add Product Button -->
+        <a asp-action="Create" class="btn btn-primary d-flex align-items-center">
+            <i class="fas fa-plus me-2"></i>إضافة منتج
+        </a>
+    </div>
+</div>
+
+<!-- Products Table Card -->
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">الصورة</th>
+                        <th>الاسم</th>
+                        <th>القسم</th>
+                        <th>السعر</th>
+                        <th>النوع</th>
+                        <th class="text-center">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@(item.ImageUrl ?? "https://placehold.co/60x60/e5e7eb/6b7280?text=IMG")" alt="@item.Name" class="table-img" />
+                            </td>
+                            <td>
+                              @item.Name
+                            </td>
+                            <td>@item.Category.Name</td>
+                            <td>@item.Price.ToString("N2") جنيه</td>
+                            <td>
+                                @{
+                                    var typeText = item.Type == ProductType.Pharmacy ? "صيدلية" : "مستخدم عادي";
+                                    var typeClass = item.Type == ProductType.Pharmacy ? "badge-soft-success" : "badge-soft-info";
+                                }
+                                <span class="badge @typeClass">@typeText</span>
+                            </td>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-circle btn-outline-primary" title="تعديل"><i class="fas fa-pen"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-circle btn-outline-danger ms-1" title="حذف"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@model Dictionary<Sky_Health.Models.Category, List<Sky_Health.Models.Product>>
+@{
+    ViewData["Title"] = "منتجات الصيدليات";
+}
+
+<div class="container section-padding">
+    <div class="text-center">
+        <h2 class="mb-5 title">منتجات الصيدليات</h2>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="col-12 text-center">
+            <p class="fs-4 text-muted">لا توجد منتجات متاحة في قسم الصيدليات حالياً.</p>
+        </div>
+    }
+    else
+    {
+        @foreach (var categoryGroup in Model)
+        {
+            <div class="category-section mb-5">
+                <h3 class="category-title">@categoryGroup.Key.Name</h3>
+                <div class="row g-4">
+                    @foreach (var product in categoryGroup.Value)
+                    {
+                        <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+                            @await Html.PartialAsync("_ProductCard", product)
+                        </div>
+                    }
+                </div>
+                <div class="text-center mt-4">
+                    <a asp-controller="Pharmacy" asp-action="AllProducts" asp-route-categoryId="@categoryGroup.Key.Id" class="btn btn-primary">عرض المزيد في قسم @categoryGroup.Key.Name</a>
+                </div>
+            </div>
+        }
+    }
+</div>

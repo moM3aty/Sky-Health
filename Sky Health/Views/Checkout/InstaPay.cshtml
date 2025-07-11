@@ -1,0 +1,32 @@
+﻿@model Sky_Health.Models.Order
+@{
+    ViewData["Title"] = "الدفع عبر انستا باي";
+}
+
+<div class="container section-padding">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+            <div class="card shadow-sm p-4 p-md-5 text-center">
+                <h3 class="title mb-3">الدفع عبر انستا باي</h3>
+                <p class="text-muted">لإتمام طلبك رقم <strong class="text-primary">#@Model.Id</strong>، يرجى مسح الـ QR Code التالي باستخدام تطبيق انستا باي.</p>
+
+                <div class="my-4">
+                    <p class="fs-5">المبلغ الإجمالي للدفع:</p>
+                    <h2 class="fw-bold text-danger">@Model.TotalAmount.ToString("N2") جنيه</h2>
+                </div>
+
+                <hr>
+
+                <div class="alert alert-light border">
+                    <p class="mt-2">امسح الكود التالي للدفع:</p>
+                    <img src="~/images/Insta.png" alt="InstaPay QR Code" class="img-fluid my-2" style="border: 1px solid #ddd; padding: 5px;">
+                    <p class="mt-3">أو قم بالتحويل يدوياً إلى العنوان التالي:</p>
+                    <a href="https://ipn.eg/S/sherif_shabanfathe/instapay/2msgzX" class="fw-bold user-select-all" dir="ltr">sherif_shabanfathe@instapay</a>
+                </div>
+
+                <p class="mt-4">بعد إتمام عملية التحويل، سيتم تأكيد طلبك تلقائياً خلال دقائق.</p>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary mt-3">العودة إلى الرئيسية</a>
+            </div>
+        </div>
+    </div>
+</div>

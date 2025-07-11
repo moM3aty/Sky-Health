@@ -1,0 +1,65 @@
+﻿@model Sky_Health.Models.Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+<style>
+.initial-add-btn {
+    border:1px solid #013db7 !important;
+    color:#FFF !important;
+}
+
+.initial-add-btn:hover {
+            border: 1px solid #013db7 !important;
+    color: #013db7 !important;
+    background-color:#FFF !important;
+
+}
+</style>
+<div class="container section-padding">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card p-4 p-md-5 shadow-sm border-0">
+                <div class="row g-5">
+                    <div class="col-lg-6 text-center">
+                        <img src="@(Model.ImageUrl ?? "/images/product1.jpg")" alt="@Model.Name" class="img-fluid rounded" style="max-height: 450px;">
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="mb-2">@Model.Name</h2>
+                        <p class="text-muted mb-3">القسم: @Model.Category.Name</p>
+
+                        <p class="fs-2 fw-bold my-3">
+                            @if (Model.OldPrice.HasValue)
+                            {
+                                <span class="text-muted text-decoration-line-through fs-4 me-2">@Model.OldPrice.Value.ToString("N2") جنيه</span>
+                            }
+                            <span class="text-danger real-price mx-2">@Model.Price.ToString("N2") جنيه</span>
+                        </p>
+
+                        <p class="lead text-muted">@Model.Description</p>
+
+                        <hr class="my-4">
+
+                        <div class="product-actions" style="max-width: 250px;">
+                            <div class="initial-add-container">
+                                <button class="btn btn-primary btn-lg w-100 initial-add-btn">
+                                    <i class="fas fa-shopping-cart me-2"></i> إضافة للسلة
+                                </button>
+                            </div>
+                            <div class="quantity-controls-container" style="display: none;">
+                                <label class="form-label fw-bold">الكمية:</label>
+                                <div class="input-group mb-3">
+                                    <button class="btn btn-outline-primary increase-qty" type="button">+</button>
+                                    <input type="number" class="form-control text-center quantity-input" value="1" min="1">
+                                    <button class="btn btn-outline-primary decrease-qty" type="button">-</button>
+                                </div>
+                                <button class="btn btn-primary btn-lg w-100 add-to-cart-btn" data-product-id="@Model.Id">
+                                     تأكيد
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
