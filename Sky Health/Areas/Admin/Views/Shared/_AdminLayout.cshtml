@@ -70,6 +70,8 @@
 
       </div>
     </div>
+    <!-- Add Category Modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">إضافة قسم جديد</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><input type="text" id="newCategoryName" class="form-control" placeholder="اسم القسم الجديد" /></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button><button type="button" id="saveCategoryBtn" class="btn btn-primary">حفظ</button></div></div></div></div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -81,7 +83,7 @@
             if (menuToggle) {
                 menuToggle.addEventListener("click", function(e) { e.preventDefault(); document.getElementById("wrapper").classList.toggle("toggled"); });
             }
-            const darkModeToggle = document.getElementById('dark-Mode-Toggle');
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
             const applyTheme = () => {
                 if (localStorage.getItem('theme') === 'dark') {
                     document.body.classList.add('dark-mode');
@@ -147,7 +149,7 @@
 
             async function loadInitialNotifications() {
                 try {
-                    const response = await fetch('/Admin/OrdersAdmin/GetNewOrders');
+                    const response = await fetch('/Admin/Dashboard/GetNewOrders');
                     if (!response.ok) return;
 
                     const newOrders = await response.json();
@@ -176,12 +178,26 @@
 
                     connection.start().catch(err => console.error("SignalR Connection Error: ", err.toString()));
                 } catch (e) {
-                    console.error("SignalR initialization failed: ", e);
+                    console.error("SignalR initialization failed: ", e);        
                 }
             }
 
             loadInitialNotifications();
             setupSignalR();
+        });
+    </script>
+    <script>
+        $('#saveCategoryBtn').on('click', function() {
+            var categoryName = $('#newCategoryName').val();
+            if(categoryName) {
+                $.post('@Url.Action("AddCategory", "ProductsAdmin")', { categoryName: categoryName }, function(data) {
+                    if(data.success) {
+                        $('#categorySelect').append(new Option(data.name, data.id, true, true)).trigger('change');
+                        $('#addCategoryModal').modal('hide');
+                        $('#newCategoryName').val('');
+                    } else { alert('فشل حفظ القسم'); }
+                });
+            }
         });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
