@@ -28,7 +28,7 @@
                 <a asp-area="Admin" asp-controller="ShippingZonesAdmin" asp-action="Index" class="list-group-item list-group-item-action"><i class="fas fa-shipping-fast fa-fw me-3"></i><span>مناطق الشحن</span></a>
                 <a asp-area="Admin" asp-controller="PharmacyCodesAdmin" asp-action="Index" class="list-group-item list-group-item-action"><i class="fas fa-key fa-fw me-3"></i><span>أكواد الصيدليات</span></a>
             </div>
-            <div class="sidebar-footer">
+            <div  class="sidebar-footer">
                 <div class="dropdown">
                     <a href="~/OrdersAdmin/Index" class="sidebar-footer-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="far fa-bell fa-fw"></i>
@@ -56,7 +56,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <button class="btn btn-light" id="menu-toggle"><i class="fas fa-bars"></i></button>
-                <div class="d-flex flex-end gap-3">
+                    <div  class="nav-button d-flex flex-end gap-3">
                  <a class="dropdown-item" asp-area="Admin" asp-controller="ProductsAdmin" asp-action="Create"><i class="fas fa-box-open fa-fw me-2 text-primary"></i>إضافة منتج</a>
                  <a class="dropdown-item" asp-area="Admin" asp-controller="BlogsAdmin" asp-action="Create"><i class="fas fa-file-alt fa-fw me-2 text-success"></i>إضافة مقال</a>
                  <a class="dropdown-item" asp-area="Admin" asp-controller="Dashboard" asp-action="Logout"><i class="fas fa-sign-out-alt fa-fw me-2 text-danger"></i>تسجيل الخروج</a>
@@ -185,8 +185,6 @@
             loadInitialNotifications();
             setupSignalR();
         });
-    </script>
-    <script>
         $('#saveCategoryBtn').on('click', function() {
             var categoryName = $('#newCategoryName').val();
             if(categoryName) {
@@ -199,6 +197,7 @@
                 });
             }
         });
+     
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

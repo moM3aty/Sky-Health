@@ -17,7 +17,7 @@
                     </div>
                     <div class="cart-item-details">
                         <p class="item-name">@item.ProductName</p>
-                        <p class="item-price">@item.Quantity x @item.Price.ToString("N2") جنيه</p>
+                        <p class="item-price">@item.Quantity x @item.Price.ToHindi() جنيه</p>
                     </div>
                     <button class="btn-remove remove-from-cart-btn" data-product-id="@item.ProductId" aria-label="Remove item">&times;</button>
                 </div>
@@ -38,7 +38,7 @@
     <div class="cart-footer">
         <div class="summary-total">
             <span>الإجمالي</span>
-            <span>@Model.Total.ToString("N2") جنيه</span>
+            <span>@Model.Total.ToHindi() جنيه</span>
         </div>
         <div class="summary-actions">
             <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary w-100">إتمام الشراء</a>

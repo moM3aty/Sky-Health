@@ -158,13 +158,13 @@
                         {
                             <div class="d-flex justify-content-between mb-2">
                                 <span>@item.ProductName x @item.Quantity</span>
-                                <span>@item.Subtotal.ToString("N2") جنيه</span>
+                                <span>@item.Subtotal.ToHindi() جنيه</span>
                             </div>
                         }
                         <hr />
                         <div class="d-flex justify-content-between">
                             <span>المجموع الفرعي</span>
-                            <span>@Model.Cart.Total.ToString("N2") جنيه</span>
+                            <span>@Model.Cart.Total.ToHindi() جنيه</span>
                         </div>
                         <div class="d-flex justify-content-between">
                             <span>الشحن</span>
@@ -173,7 +173,7 @@
                         <hr />
                         <div class="d-flex justify-content-between fw-bold fs-5">
                             <span>الإجمالي</span>
-                            <span id="totalCost">@Model.Cart.Total.ToString("N2") جنيه</span>
+                            <span id="totalCost">@Model.Cart.Total.ToHindi() جنيه</span>
                         </div>
                     </div>
                 </div>

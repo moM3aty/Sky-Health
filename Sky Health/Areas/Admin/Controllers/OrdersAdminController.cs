@@ -51,7 +51,24 @@ namespace Sky_Health.Areas.Admin.Controllers
             }
             return View(order);
         }
+        public async Task<IActionResult> Invoice(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var order = await _context.Orders
+                .Include(o => o.OrderItems)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return View(order);
+        }
         [HttpPost]
         public async Task<IActionResult> UpdateStatus(int id, string status)
         {

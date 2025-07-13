@@ -47,7 +47,7 @@
                               @item.Name
                             </td>
                             <td>@item.Category.Name</td>
-                            <td>@item.Price.ToString("N2") جنيه</td>
+                            <td>@item.Price.ToHindi() جنيه</td>
                             <td>
                                 @{
                                     var typeText = item.Type == ProductType.Pharmacy ? "صيدلية" : "مستخدم عادي";

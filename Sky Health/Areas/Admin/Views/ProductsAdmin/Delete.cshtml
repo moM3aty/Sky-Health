@@ -22,7 +22,7 @@
             <dd class="col-sm-9">@Model.Category.Name</dd>
 
             <dt class="col-sm-3">السعر</dt>
-            <dd class="col-sm-9">@Model.Price.ToString("N2") جنيه</dd>
+            <dd class="col-sm-9">@Model.Price.ToHindi() جنيه</dd>
         </dl>
         <form asp-action="Delete" class="mt-4">
             <input type="hidden" asp-for="Id" />

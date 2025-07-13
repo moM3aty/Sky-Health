@@ -1,7 +1,7 @@
 ﻿#side-cart {
     position: fixed;
     top: 0;
-    right: -400px; /* Start off-screen */
+    right: -400px; 
     width: 380px;
     max-width: 90%;
     height: 100%;
@@ -11,7 +11,8 @@
     transition: right 0.4s ease-in-out;
     display: flex;
     flex-direction: column;
-    font-family: 'Cairo', sans-serif; /* ضمان استخدام الخط الصحيح */
+    font-family: 'Cairo', sans-serif; 
+    overflow:auto;
 }
 
     #side-cart.open {

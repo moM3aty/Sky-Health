@@ -1,4 +1,5 @@
 ﻿@model Sky_Health.ViewModels.DashboardViewModel
+@using Sky_Health.Helpers
 @{
     ViewData["Title"] = "لوحة التحكم";
 }
@@ -15,7 +16,7 @@
             <div class="card-body">
                 <div>
                     <h5 class="card-title">إجمالي المبيعات</h5>
-                    <p class="stat-number">@Model.TotalSales.ToString("N2") <small>جنيه</small></p>
+                    <p class="stat-number">@Model.TotalSales.ToHindi() <small>جنيه</small></p>
                 </div>
                 <i class="fas fa-dollar-sign stat-icon"></i>
             </div>
@@ -43,6 +44,7 @@
             </div>
         </div>
     </div>
+    
     <div class="col-xl-3 col-md-6">
         <div class="card stat-card">
             <div class="card-body">
@@ -110,11 +112,11 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
-                آخر الطلبات
+                <h6 class="m-0 fw-bold">آخر الطلبات</h6>
             </div>
-            <div class="card-body p-0">
+            <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover mb-0" width="100%" cellspacing="0">
+                    <table class="table table-hover" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>رقم الطلب</th>
@@ -129,10 +131,10 @@
                             @foreach (var order in Model.LatestOrders)
                             {
                                 <tr>
-                                    <td><span class="fw-bold text-primary">#@order.Id</span></td>
+                                    <td>#@order.Id</td>
                                     <td>@order.CustomerName</td>
-                                    <td>@order.TotalAmount.ToString("N2") جنيه</td>
-                                    <td>@order.OrderDate.ToString("g")</td>
+                                    <td>@order.TotalAmount.ToHindi() جنيه</td>
+                                    <td>@order.OrderDate.ToHindi("g")</td>
                                     <td>
                                         @{
                                             var statusClass = "badge-soft-secondary";
@@ -149,7 +151,7 @@
                                         }
                                         <span class="badge @statusClass">@order.OrderStatus</span>
                                     </td>
-                                    <td><a asp-action="Details" asp-controller="OrdersAdmin" asp-route-id="@order.Id" class="btn btn-sm btn-light border"><i class="fas fa-eye"></i></a></td>
+                                    <td><a asp-action="Details" asp-controller="OrdersAdmin" asp-route-id="@order.Id" class="btn btn-sm btn-light"><i class="fas fa-eye"></i></a></td>
                                 </tr>
                             }
                         </tbody>

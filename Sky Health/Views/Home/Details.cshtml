@@ -30,9 +30,9 @@
                         <p class="fs-2 fw-bold my-3">
                             @if (Model.OldPrice.HasValue)
                             {
-                                <span class="text-muted text-decoration-line-through fs-4 me-2">@Model.OldPrice.Value.ToString("N2") جنيه</span>
+                                <span class="text-muted text-decoration-line-through fs-4 me-2">@Model.OldPrice.Value.ToHindi() جنيه</span>
                             }
-                            <span class="text-danger real-price mx-2">@Model.Price.ToString("N2") جنيه</span>
+                            <span class="text-danger real-price mx-2">@Model.Price.ToHindi() جنيه</span>
                         </p>
 
                         <p class="lead text-muted">@Model.Description</p>

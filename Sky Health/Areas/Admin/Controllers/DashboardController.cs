@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sky_Health.Data;
+using Sky_Health.Helpers;
 using Sky_Health.Models;
 using Sky_Health.ViewModels;
 using System;
@@ -31,7 +32,7 @@ namespace Sky_Health.Areas.Admin.Controllers
             for (int i = 6; i >= 0; i--)
             {
                 var date = DateTime.Today.AddDays(-i);
-                salesData[date.ToString("dd MMM")] = 0;
+                salesData[date.ToHindi("dd MMM")] = 0;
             }
 
             var recentSales = await _context.Orders
@@ -83,7 +84,7 @@ namespace Sky_Health.Areas.Admin.Controllers
                 .Take(5)
                 .ToList();
 
-
+            ViewBag.LabProductsCount = await _context.Products.CountAsync(p => p.Type == ProductType.Lab);
             var viewModel = new DashboardViewModel
             {
                 TotalSales = await _context.Orders.Where(o => o.OrderStatus == "مدفوع" || o.OrderStatus == "تم التوصيل").SumAsync(o => o.TotalAmount),
@@ -114,15 +115,13 @@ namespace Sky_Health.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> GetNewOrders()
         {
-          
             var newOrders = await _context.Orders
-                                        .Where(o => o.OrderStatus == "جديد")
-                                        .OrderByDescending(o => o.Id)
-                                        .Take(5) 
-                                        .Select(o => new { o.Id, o.CustomerName })
-                                        .ToListAsync();
-
+              .Where(o => o.IsNew)
+              .OrderByDescending(o => o.OrderDate)
+              .Select(o => new { o.Id, o.CustomerName })
+              .ToListAsync();
             return Json(newOrders);
+           
         }
 
         [HttpPost]

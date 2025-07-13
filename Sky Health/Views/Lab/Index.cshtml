@@ -1,0 +1,56 @@
+﻿@model Sky_Health.ViewModels.LabProductsViewModel
+@{
+    ViewData["Title"] = "قسم المعامل";
+}
+
+<div class="container section-padding">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="sidebar-container sticky-top">
+                <h4 class="sidebar-title">الأقسام</h4>
+                <div class="list-group category-list">
+                    <a asp-action="Index" asp-controller="Lab" asp-route-categoryId="" class="list-group-item list-group-item-action @(Model.CurrentCategoryId == null ? "active" : "")">
+                        جميع الأقسام
+                    </a>
+                    @foreach (var category in Model.AllCategories)
+                    {
+                        <a asp-action="Index" asp-controller="Lab" asp-route-categoryId="@category.Id" class="list-group-item list-group-item-action @(Model.CurrentCategoryId == category.Id ? "active" : "")">
+                            @category.Name
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">منتجات المعامل</h2>
+                <form asp-action="Index" method="get" class="search-form">
+                    <div class="input-group">
+                        <button class="btn btn-primary" type="submit" style="border-radius:0 25px 25px 0;"><i class="fas fa-search"></i></button>
+                        <input type="text" name="searchTerm" class="form-control" placeholder="ابحث عن منتج..." value="@Model.SearchTerm">
+                        <input type="hidden" name="categoryId" value="@Model.CurrentCategoryId">
+                    </div>
+                </form>
+            </div>
+
+            <div class="row g-4">
+                @if (Model.Products.Any())
+                {
+                    @foreach (var product in Model.Products)
+                    {
+                        <div class="col-md-6 col-lg-4">
+                            @await Html.PartialAsync("_ProductCard", product)
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="col-12 text-center py-5">
+                        <p class="fs-4 text-muted">لا توجد منتجات تطابق بحثك.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

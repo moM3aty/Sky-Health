@@ -1,8 +1,9 @@
 wwwroot\css\admin-login.css
-wwwroot\css\admin.css
+wwwroot\css\invoice.css
 wwwroot\css\all.min.css
 wwwroot\css\bootstrap.min.css
 wwwroot\css\cart.css
+wwwroot\css\admin.css
 wwwroot\css\main.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
@@ -17,6 +18,9 @@ wwwroot\images\header-bg.jpg
 wwwroot\images\Insta.png
 wwwroot\images\logo.png
 wwwroot\images\product1.jpg
+wwwroot\images\products\5e120391-cc8e-49ed-a57a-548e2e34c28f.png
+wwwroot\images\products\7e989e27-41c1-4e6a-9902-64539418b9e7.png
+wwwroot\images\qr-code.png
 wwwroot\images\vision.jpg
 wwwroot\images\vision3.jpg
 wwwroot\images\vodafone.png
@@ -92,75 +96,76 @@ wwwroot\webfonts\fa-solid-900.ttf
 wwwroot\webfonts\fa-solid-900.woff2
 wwwroot\webfonts\fa-v4compatibility.ttf
 wwwroot\webfonts\fa-v4compatibility.woff2
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery\LICENSE.txt
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.slim.min.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.slim.min.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.slim.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.min.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.min.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery-validation\LICENSE.md
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery-validation\dist\jquery.validate.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery-validation\dist\additional-methods.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\js\site.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\js\main.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\js\cart.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\js\bootstrap.bundle.min.js
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\font\alfont_com_AlFont_com_Hayah-1.otf
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\favicon.ico
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\css\site.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\css\main.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\css\cart.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\css\bootstrap.min.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\css\all.min.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\css\admin.css
-G:\Developer\GMT Web\Sky Health\Sky Health\wwwroot\css\admin-login.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\css\admin-login.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\css\invoice.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\css\all.min.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\css\bootstrap.min.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\css\cart.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\css\admin.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\css\main.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\css\site.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\favicon.ico
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\font\alfont_com_AlFont_com_Hayah-1.otf
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\js\bootstrap.bundle.min.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\js\cart.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\js\main.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\js\site.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery-validation\dist\additional-methods.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery-validation\LICENSE.md
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.min.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.min.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.slim.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.slim.min.js
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery\dist\jquery.slim.min.map
+J:\Developer\Github\Sky Health\Sky Health\wwwroot\lib\jquery\LICENSE.txt

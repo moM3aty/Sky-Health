@@ -1,4 +1,18 @@
- document.addEventListener("DOMContentLoaded", function () {
+﻿document.addEventListener("DOMContentLoaded", function () {
+    function convertNumbersInTextNodes(parentNode) {
+        const arabicNumerals = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+
+        const walker = document.createTreeWalker(parentNode, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        while (node = walker.nextNode()) {
+            if (node.parentElement.tagName.toLowerCase() !== 'script' && node.parentElement.tagName.toLowerCase() !== 'style') {
+                node.nodeValue = node.nodeValue.replace(/[0-9]/g, function (digit) {
+                    return arabicNumerals[parseInt(digit)];
+                });
+            }
+        }
+    }
+    convertNumbersInTextNodes(document.body);
    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
     link.addEventListener('click', () => {
       const navbarCollapse = document.querySelector('.navbar-collapse');
@@ -112,4 +126,5 @@
     duration: 1000,
     easing: 'ease-in-out',
   });
+
 });

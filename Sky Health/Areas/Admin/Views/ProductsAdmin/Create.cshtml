@@ -79,26 +79,11 @@
     </div>
 </div>
 
-<!-- Add Category Modal -->
-<div class="modal fade" id="addCategoryModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">إضافة قسم جديد</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><input type="text" id="newCategoryName" class="form-control" placeholder="اسم القسم الجديد" /></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button><button type="button" id="saveCategoryBtn" class="btn btn-primary">حفظ</button></div></div></div></div>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    <script>
-        $('#saveCategoryBtn').on('click', function() {
-            var categoryName = $('#newCategoryName').val();
-            if(categoryName) {
-                $.post('@Url.Action("AddCategory", "ProductsAdmin")', { categoryName: categoryName }, function(data) {
-                    if(data.success) {
-                        $('#categorySelect').append(new Option(data.name, data.id, true, true)).trigger('change');
-                        $('#addCategoryModal').modal('hide');
-                        $('#newCategoryName').val('');
-                    } else { alert('فشل حفظ القسم'); }
-                });
-            }
-        });
-    </script>
+   
 }
 

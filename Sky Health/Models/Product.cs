@@ -7,7 +7,10 @@ namespace Sky_Health.Models
         [Display(Name = "مستخدم عادي")]
         Regular,
         [Display(Name = "صيدلية")]
-        Pharmacy
+        Pharmacy,
+
+        [Display(Name = "معمل")] 
+        Lab
     }
 
     public class Product
@@ -26,9 +29,11 @@ namespace Sky_Health.Models
         [Required(ErrorMessage = "السعر مطلوب")]
         [Range(0.01, 1000000, ErrorMessage = "السعر يجب أن يكون أكبر من صفر")]
         [Display(Name = " السعر بعد الخصم")]
+        [DisplayFormat(DataFormatString = "{0:G29}", ApplyFormatInEditMode = true)]
         public decimal Price { get; set; }
         [Range(0.01, 1000000, ErrorMessage = "السعر قبل الخصم يجب أن يكون أكبر من صفر")]
         [Display(Name = "السعر قبل الخصم")]
+        [DisplayFormat(DataFormatString = "{0:G29}", ApplyFormatInEditMode = true)]
         public decimal? OldPrice { get; set; }
         [Required(ErrorMessage = "نوع المنتج مطلوب")]
         [Display(Name = "نوع المنتج")]

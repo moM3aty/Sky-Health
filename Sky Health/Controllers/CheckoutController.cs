@@ -74,7 +74,8 @@ namespace Sky_Health.Controllers
                     ShippingZoneName = shippingZone.Name,
                     PaymentMethod = model.PaymentMethod,
                     OrderDate = DateTime.Now,
-                    OrderStatus = "في انتظار الدفع"
+                    OrderStatus = "جديد"
+
                 };
 
                 foreach (var item in model.Cart.Items)

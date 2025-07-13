@@ -115,6 +115,7 @@ hr {
     background-color: var(--navbar-bg);
     box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
 }
+
 #wrapper {
     display: flex;
 }
@@ -151,9 +152,11 @@ hr {
     border-bottom: 1px solid var(--border-color);
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-.dropdown-menu{
-    z-index:100000;
+
+.dropdown-menu {
+    z-index: 100000;
 }
+
 .navbar .nav-link {
     color: var(--text-color);
 }
@@ -241,12 +244,14 @@ body.dark-mode .list-group-item:hover {
 
 .card-body {
     padding: 1.5rem;
-    z-index:1;
+    z-index: 1;
 }
-.card-body form{
-    position:relative;
-    z-index:1;
-}
+
+    .card-body form {
+        position: relative;
+        z-index: 1;
+    }
+
 .stat-card {
     position: relative;
     overflow: hidden;
@@ -288,13 +293,30 @@ body.dark-mode .list-group-item:hover {
 
 /* --- Tables --- */
 .table-responsive {
-    border: none;
+    overflow-x: auto;
+}
+
+.table thead {
+    color: var(--text-color);
+    background-color: var(--table-header-bg);
+    border-bottom: 2px solid var(--border-color);
+    font-weight: 600;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
 }
 
 .table {
     background-color: var(--fg-color);
     border-radius: 0.75rem;
-    overflow: hidden;
 }
 
     .table thead {
@@ -318,7 +340,6 @@ body.dark-mode .list-group-item:hover {
 
 .card .table-responsive {
     border-radius: 0 0 1rem 1rem;
-    overflow: hidden;
 }
 
 .table .table-img {
@@ -625,13 +646,15 @@ input:checked + .slider {
     .slider.round:before {
         border-radius: 50%;
     }
+
 .page-header {
     display: flex;
     justify-content: space-between;
-    padding:10px 20px;
+    padding: 10px 20px;
 }
+
 navbar .nav-item .nav-link {
-    position: relative !important; /* Needed for positioning the badge */
+    position: relative !important; 
     color: var(--text-color);
 }
 
@@ -641,7 +664,7 @@ navbar .nav-item .nav-link {
     justify-content: center !important;
     position: absolute !important;
     top: 10px !important;
-    right: 5px !important; /* Adjust for RTL */
+    right: 5px !important; 
     font-size: 0.6em !important;
     padding: 0.3em 0.5em !important;
     transform: none !important;
@@ -693,3 +716,10 @@ body.dark-mode .navbar .dropdown-menu .dropdown-item {
     body.dark-mode .navbar .dropdown-menu .dropdown-item:focus {
         color: #fff !important;
     }
+
+@media (max-width: 650px) {
+    .nav-button {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}

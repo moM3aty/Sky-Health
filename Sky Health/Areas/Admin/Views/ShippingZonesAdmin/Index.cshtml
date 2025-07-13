@@ -34,7 +34,7 @@
                     {
                         <tr>
                             <td>@item.Name</td>
-                            <td>@item.Price.ToString("N2") جنيه</td>
+                            <td>@item.Price.ToHindi() جنيه</td>
                             <td class="text-center">
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-circle btn-outline-primary" title="تعديل"><i class="fas fa-pen"></i></a>
                                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-circle btn-outline-danger ms-1" title="حذف"><i class="fas fa-trash"></i></a>
