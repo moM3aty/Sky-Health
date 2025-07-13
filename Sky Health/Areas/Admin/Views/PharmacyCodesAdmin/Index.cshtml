@@ -1,24 +1,23 @@
-﻿@model IEnumerable<Sky_Health.Models.PharmacyAccessCode>
+﻿@model Sky_Health.ViewModels.PharmacyCodesAdminViewModel
 @{
     ViewData["Title"] = "إدارة أكواد الصيدليات";
 }
 
-<div class="d-flex justify-content-evenly align-items-center mb-4">
-    <h1 class="page-title mb-0">إدارة أكواد الصيدليات</h1>
+<div class="page-header">
+    <h1 class="page-title">إدارة أكواد الصيدليات</h1>
     <div class="d-flex align-items-center">
-        <form asp-action="Index" method="get" class="me-2">
+        <form asp-action="Index" method="get" class="me-3">
             <div class="input-group">
-                <input type="text" name="searchTerm" class="form-control" placeholder="بحث بالكود..." value="@ViewData["CurrentFilter"]">
-                <button class="btn btn-outline-secondary" type="submit" style="border-color: var(--border-color);"><i class="fas fa-search"></i></button>
+                <input type="text" name="searchTerm" class="form-control" placeholder="بحث بالكود..." value="@Model.SearchTerm">
+                <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
             </div>
         </form>
         <form asp-action="Create" method="post">
             @Html.AntiForgeryToken()
-            <button type="submit" class="btn btn-primary d-flex align-items-center"><i class="fas fa-plus me-2"></i>إنشاء كود جديد</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-plus me-2"></i>إنشاء كود</button>
         </form>
     </div>
 </div>
-
 
 <div class="card">
     <div class="card-body p-0">
@@ -32,9 +31,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (Model.Any())
+                    @if (Model.PharmacyAccessCodes.Any())
                     {
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.PharmacyAccessCodes)
                         {
                             <tr>
                                 <td><code class="fs-6">@item.Code</code></td>

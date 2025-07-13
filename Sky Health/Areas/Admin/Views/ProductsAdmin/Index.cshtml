@@ -1,27 +1,44 @@
-﻿@model IEnumerable<Sky_Health.Models.Product>
+﻿@model Sky_Health.ViewModels.ProductsAdminViewModel
 @{
     ViewData["Title"] = "إدارة المنتجات";
 }
 
-<!-- Page Header -->
-<div class="d-flex justify-content-evenly align-items-center mb-4">
-    <h1 class="page-title mb-0">إدارة المنتجات</h1>
-    <div class="d-flex align-items-center">
-        <!-- Search Form -->
-        <form asp-action="Index" method="get" class="me-2">
-            <div class="input-group">
-                <input type="text" name="searchTerm" class="form-control" placeholder="بحث عن منتج..." value="@ViewData["CurrentFilter"]">
-                <button class="btn btn-outline-secondary" type="submit" style="border-color: var(--border-color);"><i class="fas fa-search"></i></button>
+<div class="page-header">
+    <h1 class="page-title">إدارة المنتجات</h1>
+    <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus me-2"></i>إضافة منتج جديد</a>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <form asp-action="Index" method="get">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label for="searchTerm" class="form-label">بحث بالاسم</label>
+                    <input type="text" name="searchTerm" id="searchTerm" class="form-control" placeholder="اسم المنتج..." value="@Model.SearchTerm">
+                </div>
+                <div class="col-md-3">
+                    <label for="categoryId" class="form-label">القسم</label>
+                    <select name="categoryId" id="categoryId" class="form-select" asp-items="Model.Categories">
+                        <option value="">كل الأقسام</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="stockStatus" class="form-label">حالة المخزون</label>
+                    <select name="stockStatus" id="stockStatus" class="form-select">
+                        <option value="" selected="@(string.IsNullOrEmpty(Model.CurrentStockStatus))">الكل</option>
+                        <option value="InStock" selected="@(Model.CurrentStockStatus == "InStock")">متوفر</option>
+                        <option value="LowStock" selected="@(Model.CurrentStockStatus == "LowStock")">كمية محدودة</option>
+                        <option value="OutOfStock" selected="@(Model.CurrentStockStatus == "OutOfStock")">نفذت الكمية</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">فلترة</button>
+                </div>
             </div>
         </form>
-        <!-- Add Product Button -->
-        <a asp-action="Create" class="btn btn-primary d-flex align-items-center">
-            <i class="fas fa-plus me-2"></i>إضافة منتج
-        </a>
     </div>
 </div>
 
-<!-- Products Table Card -->
 <div class="card">
     <div class="card-body p-0">
         <div class="table-responsive">
@@ -32,12 +49,13 @@
                         <th>الاسم</th>
                         <th>القسم</th>
                         <th>السعر</th>
+                        <th>الكمية بالمخزن</th>
                         <th>النوع</th>
                         <th class="text-center">الإجراءات</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Products)
                     {
                         <tr>
                             <td>
@@ -48,6 +66,20 @@
                             </td>
                             <td>@item.Category.Name</td>
                             <td>@item.Price.ToHindi() جنيه</td>
+                            <td>
+                                @if (item.StockQuantity > 10)
+                                {
+                                    <span class="badge bg-success">متوفر (@item.StockQuantity)</span>
+                                }
+                                else if (item.StockQuantity > 0)
+                                {
+                                    <span class="badge bg-warning text-dark">كمية محدودة (@item.StockQuantity)</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">نفذت الكمية</span>
+                                }
+                            </td>
                             <td>
                                 @{
                                     var typeText = item.Type == ProductType.Pharmacy ? "صيدلية" : "مستخدم عادي";

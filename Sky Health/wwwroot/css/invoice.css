@@ -173,3 +173,47 @@ body {
         -webkit-print-color-adjust: exact;
     }
 }
+@media print {
+    @page {
+        size: auto;
+        margin: 0mm !important; 
+    }
+    body {
+        background-color: #fff;
+    }
+
+    .page-container {
+        padding: 0;
+    }
+
+    .invoice-container {
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        max-width: 100%;
+        border-radius: 0;
+    }
+
+    .print-actions {
+        display: none;
+    }
+
+    .invoice-header {
+        border-bottom: 2px solid #333 !important;
+    }
+
+    .invoice-title h1 {
+        color: #000 !important;
+    }
+
+    .table thead {
+        background-color: #f2f2f2 !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .summary-table .total-row {
+        color: #000 !important;
+        background-color: #e9ecef !important;
+        -webkit-print-color-adjust: exact;
+    }
+}

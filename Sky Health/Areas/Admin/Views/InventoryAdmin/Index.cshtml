@@ -1,0 +1,134 @@
+﻿@model Sky_Health.ViewModels.InventoryViewModel
+@{
+    ViewData["Title"] = "إدارة المخزن";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="page-header">
+    <h1 class="page-title">إدارة المخزن</h1>
+</div>
+
+<!-- Filter Section -->
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <form asp-action="Index" method="get">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label for="searchTerm" class="form-label">بحث بالاسم</label>
+                    <input type="text" name="searchTerm" id="searchTerm" class="form-control" placeholder="اسم المنتج..." value="@Model.SearchTerm">
+                </div>
+                <div class="col-md-3">
+                    <label for="categoryId" class="form-label">القسم</label>
+                    <select name="categoryId" id="categoryId" class="form-select" asp-items="Model.Categories">
+                        <option value="">كل الأقسام</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="stockStatus" class="form-label">حالة المخزون</label>
+                    <select name="stockStatus" id="stockStatus" class="form-select">
+                        <option value="" selected="@(string.IsNullOrEmpty(Model.CurrentStockStatus))">الكل</option>
+                        <option value="InStock" selected="@(Model.CurrentStockStatus == "InStock")">متوفر</option>
+                        <option value="LowStock" selected="@(Model.CurrentStockStatus == "LowStock")">كمية محدودة</option>
+                        <option value="OutOfStock" selected="@(Model.CurrentStockStatus == "OutOfStock")">نفذت الكمية</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">فلترة</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>المنتج</th>
+                        <th>القسم</th>
+                        <th class="text-center">الكمية الحالية</th>
+                        <th style="width: 250px;" class="text-center">تحديث الكمية</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Products)
+                    {
+                        <tr id="row-@item.Id">
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="@(item.ImageUrl ?? "/images/placeholder.png")" class="table-img me-3" />
+                                    <span>@item.Name</span>
+                                </div>
+                            </td>
+                            <td>@item.Category.Name</td>
+                            <td class="text-center">
+                                <span class="badge stock-badge-@item.Id @(item.StockQuantity > 10 ? "bg-success" : (item.StockQuantity > 0 ? "bg-warning text-dark" : "bg-danger"))">
+                                    @item.StockQuantity
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <form class="stock-update-form" data-product-id="@item.Id">
+                                    <div class="input-group">
+                                        <input type="number" class="form-control form-control-sm" value="@item.StockQuantity" min="0">
+                                        <button type="submit" class="btn btn-sm btn-primary">تحديث</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('.stock-update-form').on('submit', function(e) {
+                e.preventDefault();
+
+                var form = $(this);
+                var productId = form.data('product-id');
+                var newQuantity = form.find('input[type="number"]').val();
+                var button = form.find('button');
+                var originalButtonText = button.html();
+
+                button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>').prop('disabled', true);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("UpdateStock", "InventoryAdmin")',
+                    data: {
+                        id: productId,
+                        quantity: newQuantity,
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function(response) {
+                        var badge = $('.stock-badge-' + productId);
+                        badge.text(response.newQuantity);
+
+                        badge.removeClass('bg-success bg-warning bg-danger text-dark');
+
+                        if (response.newQuantity > 10) {
+                            badge.addClass('bg-success');
+                        } else if (response.newQuantity > 0) {
+                            badge.addClass('bg-warning text-dark');
+                        } else {
+                            badge.addClass('bg-danger');
+                        }
+                    },
+                    error: function() {
+                        alert('حدث خطأ أثناء تحديث الكمية.');
+                    },
+                    complete: function() {
+                        button.html(originalButtonText).prop('disabled', false);
+                    }
+                });
+            });
+        });
+    </script>
+}

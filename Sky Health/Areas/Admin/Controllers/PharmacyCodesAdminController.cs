@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sky_Health.Data;
 using Sky_Health.Models;
+using Sky_Health.ViewModels;
 
 namespace Sky_Health.Areas.Admin.Controllers
 {
@@ -23,12 +24,16 @@ namespace Sky_Health.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                query = query.Where(b => b.Code.Contains(searchTerm));
+                query = query.Where(c => c.Code.Contains(searchTerm));
             }
 
-            ViewData["CurrentFilter"] = searchTerm;
+            var viewModel = new PharmacyCodesAdminViewModel
+            {
+                PharmacyAccessCodes = await query.ToListAsync(),
+                SearchTerm = searchTerm
+            };
 
-            return View(await query.ToListAsync());
+            return View(viewModel);
         }
 
         [HttpPost]

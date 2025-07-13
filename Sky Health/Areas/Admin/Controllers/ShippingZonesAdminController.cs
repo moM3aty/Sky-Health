@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sky_Health.Data;
 using Sky_Health.Models;
+using Sky_Health.ViewModels;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Sky_Health.Areas.Admin.Controllers
@@ -17,20 +18,24 @@ namespace Sky_Health.Areas.Admin.Controllers
         {
             _context = context;
         }
-
         public async Task<IActionResult> Index(string searchTerm)
         {
             var query = _context.ShippingZones.AsQueryable();
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                query = query.Where(p => p.Name.Contains(searchTerm));
+                query = query.Where(z => z.Name.Contains(searchTerm));
             }
 
-            ViewData["CurrentFilter"] = searchTerm;
+            var viewModel = new ShippingZonesAdminViewModel
+            {
+                ShippingZones = await query.ToListAsync(),
+                SearchTerm = searchTerm
+            };
 
-            return View(await query.ToListAsync());
+            return View(viewModel);
         }
+
 
         public IActionResult Create()
         {

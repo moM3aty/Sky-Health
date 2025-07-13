@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sky_Health.Data;
 using Sky_Health.Models;
+using Sky_Health.ViewModels;
 
 namespace Sky_Health.Areas.Admin.Controllers
 {
@@ -17,15 +18,28 @@ namespace Sky_Health.Areas.Admin.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string searchTerm)
+        public async Task<IActionResult> Index(string searchTerm, string status)
         {
             var query = _context.Orders.AsQueryable();
+
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                query = query.Where(o => o.CustomerName.Contains(searchTerm) || o.Id.ToString() == searchTerm);
+                query = query.Where(o => o.CustomerName.Contains(searchTerm) || o.Id.ToString().Contains(searchTerm));
             }
-            ViewData["CurrentFilter"] = searchTerm;
-            return View(await query.OrderByDescending(o => o.OrderDate).ToListAsync());
+
+            if (!string.IsNullOrEmpty(status))
+            {
+                query = query.Where(o => o.OrderStatus == status);
+            }
+
+            var viewModel = new OrdersAdminViewModel
+            {
+                Orders = await query.OrderByDescending(o => o.OrderDate).ToListAsync(),
+                SearchTerm = searchTerm,
+                CurrentStatus = status
+            };
+
+            return View(viewModel);
         }
 
 

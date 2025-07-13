@@ -48,6 +48,16 @@
                         <div class="col-md-3 d-flex align-items-end mb-3">
                             <button type="button" class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i class="fas fa-plus"></i> قسم جديد</button>
                         </div>
+                        <div class="mb-3">
+                            <label asp-for="StockQuantity" class="form-label"></label>
+                            <input asp-for="StockQuantity" class="form-control" />
+                            <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3" id="unitsPerBoxContainer" style="display: none;">
+                            <label asp-for="UnitsPerBox" class="form-label"></label>
+                            <input asp-for="UnitsPerBox" class="form-control" />
+                            <span asp-validation-for="UnitsPerBox" class="text-danger"></span>
+                        </div>
                     </div>
 
                     <div class="row">

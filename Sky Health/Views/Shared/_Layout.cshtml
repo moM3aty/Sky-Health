@@ -25,13 +25,16 @@
 
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav mx-auto d-flex gap-3 justify-content-center align-items-center text-center">
-                    <li class="nav-item"><a class="nav-link active" asp-controller="Home" asp-action="Index">الرئيسية</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#vision">رؤيتنا</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#products">المنتجات</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-controller="Lab" asp-action="Index">قسم المعامل</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-controller="Pharmacy" asp-action="Index">قسم الصيدليات</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Blogs">المدونة</a></li>
+                    <ul class="navbar-nav mx-auto d-flex gap-3 justify-content-center align-items-center text-center">
+                        <li class="nav-item"><a class="nav-link active" asp-controller="Home" asp-action="Index">الرئيسية</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="about">من نحن</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="vision">رؤيتنا</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index" asp-fragment="products">المنتجات</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Lab" asp-action="Index">قسم المعامل</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Pharmacy" asp-action="Index">قسم الصيدليات</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Blogs">المدونة</a></li>
+                    </ul>
+
                 </ul>
                 <div id="cartButton" class="d-flex align-items-center mt-4 mt-lg-0 justify-content-center justify-content-lg-end">
                     <a id="cart-icon" class="cart">

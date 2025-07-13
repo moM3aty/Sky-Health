@@ -1,24 +1,21 @@
-﻿@model IEnumerable<Sky_Health.Models.Blog>
+﻿@model Sky_Health.ViewModels.BlogsAdminViewModel
 @{
     ViewData["Title"] = "إدارة المدونات";
 }
-
-<div class="d-flex justify-content-evenly align-items-center mb-4">
-    <h1 class="page-title mb-0">إدارة المدونات</h1>
+<div class="page-header">
+    <h1 class="page-title">إدارة المدونات</h1>
     <div class="d-flex align-items-center">
-        <form asp-action="Index" method="get" class="me-2">
+        <form asp-action="Index" method="get" class="me-3">
             <div class="input-group">
-                <input type="text" name="searchTerm" class="form-control" placeholder="بحث بالعنوان..." value="@ViewData["CurrentFilter"]">
-                <button class="btn btn-outline-secondary" type="submit" style="border-color: var(--border-color);"><i class="fas fa-search"></i></button>
+                <input type="text" name="searchTerm" class="form-control" placeholder="بحث بالعنوان أو الكاتب..." value="@Model.SearchTerm">
+                <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
             </div>
         </form>
-        <a asp-action="Create" class="btn btn-primary d-flex align-items-center">
-            <i class="fas fa-plus me-2"></i>إضافة مقال
-        </a>
+        <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus me-2"></i>إضافة مقال</a>
     </div>
 </div>
 
-<div class="card">
+<div class="card shadow-sm">
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
@@ -31,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Blogs)
                     {
                         <tr>
                             <td>

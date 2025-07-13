@@ -1,64 +1,60 @@
 ﻿@model Sky_Health.Models.Product
+@using Sky_Health.Helpers
 @{
     ViewData["Title"] = Model.Name;
 }
-<style>
-.initial-add-btn {
-    border:1px solid #013db7 !important;
-    color:#FFF !important;
-}
 
-.initial-add-btn:hover {
-            border: 1px solid #013db7 !important;
-    color: #013db7 !important;
-    background-color:#FFF !important;
-
-}
-</style>
 <div class="container section-padding">
-    <div class="row justify-content-center">
-        <div class="col-lg-10 col-md-12">
-            <div class="card p-4 p-md-5 shadow-sm border-0">
-                <div class="row g-5">
-                    <div class="col-lg-6 text-center">
-                        <img src="@(Model.ImageUrl ?? "/images/product1.jpg")" alt="@Model.Name" class="img-fluid rounded" style="max-height: 450px;">
+    <div class="row g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+            <div class="position-relative">
+                <img src="@(Model.ImageUrl ?? "/images/placeholder.png")" alt="@Model.Name" class="img-fluid rounded shadow-lg">
+
+                @if (Model.StockQuantity <= 0)
+                {
+                    <div class="out-of-stock-badge-large">نفذت الكمية</div>
+                }
+                else if (Model.OldPrice.HasValue && Model.OldPrice.Value > Model.Price)
+                {
+                    decimal discountPercentage = ((Model.OldPrice.Value - Model.Price) / Model.OldPrice.Value) * 100;
+                    int discountInt = (int)Math.Round(discountPercentage);
+                    <div class="discount-badge-large">خصم @(discountInt.ToHindi())%</div>
+                }
+            </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+            <h2 class="product-details-title">@Model.Name</h2>
+            <p class="fs-5 text-muted">القسم: @Model.Category.Name</p>
+
+            <div class="price-details my-3">
+                <span class="current-price-details">@Model.Price.ToHindi() جنيه</span>
+                @if (Model.OldPrice.HasValue)
+                {
+                    <span class="old-price-details">@Model.OldPrice.Value.ToHindi() جنيه</span>
+                }
+            </div>
+
+            <p class="lh-lg">@Model.Description</p>
+
+            <hr class="my-4">
+
+            <div class="product-actions" style="max-width: 300px;">
+                @if (Model.StockQuantity > 0)
+                {
+                    <label class="form-label fw-bold">الكمية:</label>
+                    <div class="input-group mb-3">
+                        <button class="btn btn-outline-primary decrease-qty" type="button">-</button>
+                        <input type="number" class="form-control text-center quantity-input" value="1" min="1" max="@Model.StockQuantity">
+                        <button class="btn btn-outline-primary increase-qty" type="button">+</button>
                     </div>
-                    <div class="col-lg-6">
-                        <h2 class="mb-2">@Model.Name</h2>
-                        <p class="text-muted mb-3">القسم: @Model.Category.Name</p>
-
-                        <p class="fs-2 fw-bold my-3">
-                            @if (Model.OldPrice.HasValue)
-                            {
-                                <span class="text-muted text-decoration-line-through fs-4 me-2">@Model.OldPrice.Value.ToHindi() جنيه</span>
-                            }
-                            <span class="text-danger real-price mx-2">@Model.Price.ToHindi() جنيه</span>
-                        </p>
-
-                        <p class="lead text-muted">@Model.Description</p>
-
-                        <hr class="my-4">
-
-                        <div class="product-actions" style="max-width: 250px;">
-                            <div class="initial-add-container">
-                                <button class="btn btn-primary btn-lg w-100 initial-add-btn">
-                                    <i class="fas fa-shopping-cart me-2"></i> إضافة للسلة
-                                </button>
-                            </div>
-                            <div class="quantity-controls-container" style="display: none;">
-                                <label class="form-label fw-bold">الكمية:</label>
-                                <div class="input-group mb-3">
-                                    <button class="btn btn-outline-primary increase-qty" type="button">+</button>
-                                    <input type="number" class="form-control text-center quantity-input" value="1" min="1">
-                                    <button class="btn btn-outline-primary decrease-qty" type="button">-</button>
-                                </div>
-                                <button class="btn btn-primary btn-lg w-100 add-to-cart-btn" data-product-id="@Model.Id">
-                                     تأكيد
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <button class="btn btn-primary btn-lg w-100 add-to-cart-btn" data-product-id="@Model.Id">
+                        <i class="fas fa-shopping-cart me-2"></i> إضافة للسلة
+                    </button>
+                }
+                else
+                {
+                    <button class="btn btn-secondary btn-lg w-100" disabled>نفذت الكمية</button>
+                }
             </div>
         </div>
     </div>

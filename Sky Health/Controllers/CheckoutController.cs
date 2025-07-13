@@ -56,6 +56,16 @@ namespace Sky_Health.Controllers
 
             if (ModelState.IsValid)
             {
+                foreach (var item in cart.Items)
+                {
+                    var productInDb = await _context.Products.FindAsync(item.ProductId);
+                    if (productInDb == null || productInDb.StockQuantity < item.Quantity)
+                    {
+                        ModelState.AddModelError("", $"الكمية المطلوبة من المنتج '{item.ProductName}' غير متوفرة حالياً.");
+                        await RehydrateCheckoutViewData();
+                        return View("Index", model);
+                    }
+                }
                 var shippingZone = await _context.ShippingZones.FindAsync(model.ShippingZoneId);
                 if (shippingZone == null)
                 {
@@ -87,6 +97,11 @@ namespace Sky_Health.Controllers
                         Quantity = item.Quantity,
                         UnitPrice = item.Price
                     });
+                    var productToUpdate = await _context.Products.FindAsync(item.ProductId);
+                    if (productToUpdate != null)
+                    {
+                        productToUpdate.StockQuantity -= item.Quantity;
+                    }
                 }
 
                 _context.Orders.Add(order);

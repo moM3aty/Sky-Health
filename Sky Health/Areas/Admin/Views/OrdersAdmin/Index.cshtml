@@ -1,20 +1,43 @@
-﻿@model IEnumerable<Sky_Health.Models.Order>
+﻿@model Sky_Health.ViewModels.OrdersAdminViewModel
 @{
     ViewData["Title"] = "إدارة الطلبات";
 }
 
-<!-- Page Header -->
-<div class="d-flex justify-content-evenly align-items-center mb-4">
-    <h1 class="page-title mb-0">إدارة الطلبات</h1>
-    <form asp-action="Index" method="get">
-        <div class="input-group">
-            <input type="text" name="searchTerm" class="form-control" placeholder="بحث بالاسم أو رقم الطلب..." value="@ViewData["CurrentFilter"]">
-            <button class="btn btn-outline-secondary" type="submit" style="border-color: var(--border-color);"><i class="fas fa-search"></i></button>
-        </div>
-    </form>
+
+<div class="page-header">
+    <h1 class="page-title">إدارة الطلبات</h1>
 </div>
 
-<!-- Orders Table Card -->
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <form asp-action="Index" method="get">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-6">
+                    <label for="searchTerm" class="form-label">بحث بالاسم أو رقم الطلب</label>
+                    <input type="text" name="searchTerm" id="searchTerm" class="form-control" placeholder="..." value="@Model.SearchTerm">
+                </div>
+                <div class="col-md-4">
+                    <label for="status" class="form-label">حالة الطلب</label>
+                    <select name="status" id="status" class="form-select">
+                        <option value="" selected="@(string.IsNullOrEmpty(Model.CurrentStatus))">الكل</option>
+                        <option value="جديد" selected="@(Model.CurrentStatus == "جديد")">جديد</option>
+                        <option value="في انتظار الدفع" selected="@(Model.CurrentStatus == "في انتظار الدفع")">في انتظار الدفع</option>
+                        <option value="قيد التجهيز" selected="@(Model.CurrentStatus == "قيد التجهيز")">قيد التجهيز</option>
+                        <option value="تم الشحن" selected="@(Model.CurrentStatus == "تم الشحن")">تم الشحن</option>
+                        <option value="تم التوصيل" selected="@(Model.CurrentStatus == "تم التوصيل")">تم التوصيل</option>
+                        <option value="مدفوع" selected="@(Model.CurrentStatus == "مدفوع")">مدفوع</option>
+                        <option value="ملغي" selected="@(Model.CurrentStatus == "ملغي")">ملغي</option>
+
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">فلترة</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+ 
 <div class="card">
     <div class="card-body p-0">
         <div class="table-responsive">
@@ -30,7 +53,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Orders)
                     {
                         <tr>
                             <td><span class="fw-bold text-primary">#@item.Id</span></td>

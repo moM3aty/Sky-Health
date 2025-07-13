@@ -40,10 +40,17 @@ namespace Sky_Health.Models
         public ProductType Type { get; set; }
         [Display(Name = "منتج مميز")]
         public bool IsFeatured { get; set; } = false;
-        [Required(ErrorMessage = "الفئة مطلوبة")]
-        [Display(Name = "الفئة")]
+        [Required(ErrorMessage = "القسم مطلوبة")]
+        [Display(Name = "القسم")]
         public int CategoryId { get; set; }
-        [Display(Name = "الفئة")]
+        [Display(Name = "عدد الوحدات داخل العلبة")]
+        [Range(1, int.MaxValue, ErrorMessage = "عدد الوحدات يجب أن يكون 1 على الأقل.")]
+        public int? UnitsPerBox { get; set; }
+        [Required(ErrorMessage = "الكمية مطلوبة")]
+        [Range(0, int.MaxValue, ErrorMessage = "الكمية يجب أن تكون رقم موجب.")]
+        [Display(Name = "الكمية بالمخزن")]
+        public int StockQuantity { get; set; }
+        [Display(Name = "القسم")]
         public virtual Category Category { get; set; }
     }
 }

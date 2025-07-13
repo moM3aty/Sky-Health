@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sky_Health.Data;
 using Sky_Health.Models;
+using Sky_Health.ViewModels;
 
 namespace Sky_Health.Areas.Admin.Controllers
 {
@@ -25,13 +26,18 @@ namespace Sky_Health.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                query = query.Where(b => b.Title.Contains(searchTerm));
+                query = query.Where(b => b.Title.Contains(searchTerm) || b.Author.Contains(searchTerm));
             }
 
-            ViewData["CurrentFilter"] = searchTerm;
+            var viewModel = new BlogsAdminViewModel
+            {
+                Blogs = await query.OrderByDescending(b => b.CreatedDate).ToListAsync(),
+                SearchTerm = searchTerm
+            };
 
-            return View(await query.ToListAsync());
+            return View(viewModel);
         }
+
 
         public IActionResult Create()
         {

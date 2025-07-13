@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>فاتورة طلب رقم @Model.Id</title>
+    <title>بيان رقم @Model.Id</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -26,7 +26,7 @@
                         <img src="~/images/qr-code.png" alt="QR Code" />
                     </div>
                     <div class="invoice-title">
-                        <h1>فاتورة</h1>
+                        <h1>بيان</h1>
                     </div>
                     <div class="company-logo">
                         <img src="~/images/logo.png" alt="Sky Health Logo" />
@@ -40,8 +40,8 @@
                         <p><strong>منطقة الشحن :</strong> @Model.ShippingZoneName</p>
                     </div>
                     <div class="invoice-meta">
-                        <p><strong>التاريخ:</strong> @Model.OrderDate.ToHindi("dd / MM / yyyy")</p>
-                        <p><strong>رقم الفاتورة:</strong> @(Model.Id.ToHindi())</p>
+                        <p><strong>التاريخ </strong> (@Model.OrderDate.ToHindi("dd / MM / yyyy"))</p>
+                        <p><strong>رقم البيان </strong> (@(Model.Id.ToHindi()))</p>
                     </div>
                 </div>
 

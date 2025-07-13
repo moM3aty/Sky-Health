@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sky_Health.Data;
 using Sky_Health.Models;
+using Sky_Health.ViewModels;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sky_Health.Areas.Admin.Controllers
 {
@@ -20,7 +24,7 @@ namespace Sky_Health.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task<IActionResult> Index(string searchTerm)
+        public async Task<IActionResult> Index(string searchTerm, int? categoryId, string stockStatus)
         {
             var query = _context.Products.Include(p => p.Category).AsQueryable();
 
@@ -29,11 +33,37 @@ namespace Sky_Health.Areas.Admin.Controllers
                 query = query.Where(p => p.Name.Contains(searchTerm));
             }
 
-            ViewData["CurrentFilter"] = searchTerm;
+            if (categoryId.HasValue)
+            {
+                query = query.Where(p => p.CategoryId == categoryId.Value);
+            }
 
-            var orderedQuery = query.OrderByDescending(p => p.Id);
+            if (!string.IsNullOrEmpty(stockStatus))
+            {
+                switch (stockStatus)
+                {
+                    case "InStock":
+                        query = query.Where(p => p.StockQuantity > 10);
+                        break;
+                    case "LowStock":
+                        query = query.Where(p => p.StockQuantity > 0 && p.StockQuantity <= 10);
+                        break;
+                    case "OutOfStock":
+                        query = query.Where(p => p.StockQuantity == 0);
+                        break;
+                }
+            }
 
-            return View(await orderedQuery.ToListAsync());
+            var viewModel = new ProductsAdminViewModel
+            {
+                Products = await query.OrderByDescending(p => p.Id).ToListAsync(),
+                Categories = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name", categoryId),
+                SearchTerm = searchTerm,
+                CurrentCategoryId = categoryId,
+                CurrentStockStatus = stockStatus
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult Create()
@@ -44,9 +74,13 @@ namespace Sky_Health.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Price,OldPrice,Type,CategoryId,IsFeatured")] Product product, IFormFile? imageFile)
+        public async Task<IActionResult> Create([Bind("Name,Description,Price,OldPrice,StockQuantity,UnitsPerBox,Type,IsFeatured,CategoryId")] Product product, IFormFile? imageFile)
         {
-            ModelState.Remove("Category");
+            if (product.Type != ProductType.Pharmacy)
+            {
+                product.UnitsPerBox = null;
+            }
+
             if (ModelState.IsValid)
             {
                 if (imageFile != null)
@@ -72,10 +106,14 @@ namespace Sky_Health.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,OldPrice,Type,CategoryId,ImageUrl,IsFeatured")] Product product, IFormFile? imageFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,OldPrice,StockQuantity,UnitsPerBox,Type,IsFeatured,CategoryId,ImageUrl")] Product product, IFormFile? imageFile)
         {
             if (id != product.Id) return NotFound();
-            ModelState.Remove("Category");
+
+            if (product.Type != ProductType.Pharmacy)
+            {
+                product.UnitsPerBox = null;
+            }
 
             if (ModelState.IsValid)
             {
@@ -137,7 +175,7 @@ namespace Sky_Health.Areas.Admin.Controllers
         {
             string wwwRootPath = _webHostEnvironment.WebRootPath;
             string fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-            string productPath = Path.Combine(wwwRootPath, @"images\products");
+            string productPath = Path.Combine(wwwRootPath, "images/products");
             if (!Directory.Exists(productPath))
             {
                 Directory.CreateDirectory(productPath);
@@ -146,12 +184,12 @@ namespace Sky_Health.Areas.Admin.Controllers
             {
                 await imageFile.CopyToAsync(fileStream);
             }
-            return @"\images\products\" + fileName;
+            return "/images/products/" + fileName;
         }
 
         private void DeleteImage(string imageUrl)
         {
-            var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, imageUrl.TrimStart('\\'));
+            var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, imageUrl.TrimStart('/'));
             if (System.IO.File.Exists(imagePath))
             {
                 System.IO.File.Delete(imagePath);

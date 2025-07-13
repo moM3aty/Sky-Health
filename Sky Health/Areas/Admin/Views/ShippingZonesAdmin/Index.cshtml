@@ -1,22 +1,21 @@
-﻿@model IEnumerable<Sky_Health.Models.ShippingZone>
+﻿@model Sky_Health.ViewModels.ShippingZonesAdminViewModel
 @{
     ViewData["Title"] = "إدارة مناطق الشحن";
 }
 
-<div class="d-flex justify-content-evenly align-items-center mb-4">
-    <h1 class="page-title mb-0">إدارة مناطق الشحن</h1>
+<div class="page-header">
+    <h1 class="page-title">إدارة مناطق الشحن</h1>
     <div class="d-flex align-items-center">
-        <form asp-action="Index" method="get" class="me-2">
+        <form asp-action="Index" method="get" class="me-3">
             <div class="input-group">
-                <input type="text" name="searchTerm" class="form-control" placeholder="بحث باسم المنطقة..." value="@ViewData["CurrentFilter"]">
-                <button class="btn btn-outline-secondary" type="submit" style="border-color: var(--border-color);"><i class="fas fa-search"></i></button>
+                <input type="text" name="searchTerm" class="form-control" placeholder="بحث باسم المنطقة..." value="@Model.SearchTerm">
+                <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
             </div>
         </form>
-        <a asp-action="Create" class="btn btn-primary d-flex align-items-center">
-            <i class="fas fa-plus me-2"></i>إضافة منطقة
-        </a>
+        <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus me-2"></i>إضافة منطقة</a>
     </div>
 </div>
+
 
 <div class="card">
     <div class="card-body p-0">
@@ -30,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.ShippingZones)
                     {
                         <tr>
                             <td>@item.Name</td>

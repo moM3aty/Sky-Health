@@ -19,34 +19,58 @@
             background-color: #013db7 !important;
         }
 </style>
+
 <div class="card product-card h-100">
     <a asp-action="Details" asp-controller="Home" asp-route-id="@Model.Id" class="text-decoration-none">
         <div class="img-container">
-            <img src="@(Model.ImageUrl ?? "/images/product1.jpg")" class="card-img-top" alt="@Model.Name">
+            <img src="@(Model.ImageUrl ?? "/images/placeholder.png")" class="card-img-top" alt="@Model.Name">
+
+            @if (Model.StockQuantity <= 0)
+            {
+                <div class="out-of-stock-badge">نفذت الكمية</div>
+            }
+            else if (Model.OldPrice.HasValue && Model.OldPrice.Value > Model.Price)
+            {
+                decimal discountPercentage = ((Model.OldPrice.Value - Model.Price) / Model.OldPrice.Value) * 100;
+                int discountInt = (int)Math.Round(discountPercentage);
+                <div class="discount-badge text-center">خصم @(discountInt.ToHindi())%</div>
+            }
         </div>
     </a>
     <div class="card-body d-flex flex-column text-center">
         <h5 class="card-title flex-grow-1">@Model.Name</h5>
+
+        @if (Model.Type == ProductType.Pharmacy && Model.UnitsPerBox.HasValue)
+        {
+            <small class="text-muted mb-2">(@Model.UnitsPerBox.Value.ToHindi() وحدة/علبة)</small>
+        }
+
         <div class="price-container my-2">
-            @if (Model.OldPrice.HasValue)
+            @if (Model.OldPrice.HasValue && Model.OldPrice.Value > Model.Price)
             {
                 <span class="old-price text-muted text-decoration-line-through">@Model.OldPrice.Value.ToHindi() جنيه</span>
             }
-            <span class="text-danger real-price mx-2 ">@Model.Price.ToHindi() جنيه</span>
+            <span class="text-danger real-price mx-2">@Model.Price.ToHindi() جنيه</span>
         </div>
         <div class="product-actions mt-auto">
-            <div class="initial-add-container">
-
-                <button class="btn btn-outline-primary w-100 initial-add-btn"><i class="fas fa-shopping-cart me-1"></i> إضافة للسلة</button>
-            </div>
-            <div class="quantity-controls-container" style="display: none;">
-                <div class="input-group">
-                    <button class="btn btn-outline-secondary increase-qty" type="button">+</button>
-                        <input type="number" class="form-control text-center quantity-input" value="1" min="1" aria-label="Quantity"/>
-                    <button class="btn btn-outline-secondary decrease-qty" type="button">-</button>
+            @if (Model.StockQuantity > 0)
+            {
+                <div class="initial-add-container">
+                    <button class="btn btn-outline-primary w-100 initial-add-btn"><i class="fas fa-shopping-cart me-1"></i> إضافة للسلة</button>
                 </div>
-                <button class="btn btn-primary w-100 mt-2 add-to-cart-btn" data-product-id="@Model.Id">تأكيد</button>
-            </div>
+                <div class="quantity-controls-container" style="display: none;">
+                    <div class="input-group">
+                        <button class="btn btn-outline-secondary decrease-qty" type="button">-</button>
+                        <input type="number" class="form-control text-center quantity-input" value="1" min="1" max="@Model.StockQuantity" aria-label="Quantity">
+                        <button class="btn btn-outline-secondary increase-qty" type="button">+</button>
+                    </div>
+                    <button class="btn btn-primary w-100 mt-2 add-to-cart-btn" data-product-id="@Model.Id">تأكيد</button>
+                </div>
+            }
+            else
+            {
+                <button class="btn btn-secondary w-100" disabled>نفذت الكمية</button>
+            }
         </div>
     </div>
 </div>
