@@ -17,205 +17,205 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Sky_Health
 build_property.RootNamespace = Sky_Health
-build_property.ProjectDir = E:\Developer\Github\Sky Health\Sky Health\
+build_property.ProjectDir = J:\Developer\Github\Sky Health\Sky Health\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = E:\Developer\Github\Sky Health\Sky Health
+build_property.MSBuildProjectDirectory = J:\Developer\Github\Sky Health\Sky Health
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/BlogsAdmin/Create.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/BlogsAdmin/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmxvZ3NBZG1pblxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/BlogsAdmin/Delete.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/BlogsAdmin/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmxvZ3NBZG1pblxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/BlogsAdmin/Edit.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/BlogsAdmin/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmxvZ3NBZG1pblxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/BlogsAdmin/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/BlogsAdmin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmxvZ3NBZG1pblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/Dashboard/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/Dashboard/Login.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/Dashboard/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/InventoryAdmin/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/InventoryAdmin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSW52ZW50b3J5QWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/OrdersAdmin/Details.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/OrdersAdmin/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcT3JkZXJzQWRtaW5cRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/OrdersAdmin/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/OrdersAdmin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcT3JkZXJzQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/OrdersAdmin/Invoice.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/OrdersAdmin/Invoice.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcT3JkZXJzQWRtaW5cSW52b2ljZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/PharmacyCodesAdmin/Delete.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/PharmacyCodesAdmin/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGhhcm1hY3lDb2Rlc0FkbWluXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/PharmacyCodesAdmin/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/PharmacyCodesAdmin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGhhcm1hY3lDb2Rlc0FkbWluXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ProductsAdmin/Create.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ProductsAdmin/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdHNBZG1pblxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ProductsAdmin/Delete.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ProductsAdmin/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdHNBZG1pblxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ProductsAdmin/Edit.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ProductsAdmin/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdHNBZG1pblxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ProductsAdmin/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ProductsAdmin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdHNBZG1pblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ShippingZonesAdmin/Create.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ShippingZonesAdmin/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hpcHBpbmdab25lc0FkbWluXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ShippingZonesAdmin/Delete.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ShippingZonesAdmin/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hpcHBpbmdab25lc0FkbWluXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ShippingZonesAdmin/Edit.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ShippingZonesAdmin/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hpcHBpbmdab25lc0FkbWluXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ShippingZonesAdmin/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/ShippingZonesAdmin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hpcHBpbmdab25lc0FkbWluXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/_ViewImports.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/_ViewStart.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Areas/Admin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Checkout/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Checkout/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Checkout/InstaPay.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Checkout/InstaPay.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcSW5zdGFQYXkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Checkout/PaymobRedirect.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Checkout/PaymobRedirect.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcUGF5bW9iUmVkaXJlY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Checkout/Success.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Checkout/Success.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcU3VjY2Vzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Checkout/VodafoneCash.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Checkout/VodafoneCash.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcVm9kYWZvbmVDYXNoLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Checkout/WePay.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Checkout/WePay.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcV2VQYXkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Home/BlogDetails.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Home/BlogDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCbG9nRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Home/Blogs.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Home/Blogs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCbG9ncy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Home/Details.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Home/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Home/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Lab/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Lab/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFiXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Payment/PaymentFailed.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Payment/PaymentFailed.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxQYXltZW50RmFpbGVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Payment/PaymentSuccess.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Payment/PaymentSuccess.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxQYXltZW50U3VjY2Vzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Pharmacy/AllProducts.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Pharmacy/AllProducts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhhcm1hY3lcQWxsUHJvZHVjdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Pharmacy/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Pharmacy/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhhcm1hY3lcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Pharmacy/Products.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Pharmacy/Products.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGhhcm1hY3lcUHJvZHVjdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Products/Index.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Shared/Error.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Shared/_CartPartial.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Shared/_CartPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DYXJ0UGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Shared/_ProductCard.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Shared/_ProductCard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Qcm9kdWN0Q2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Shared/_ValidationScriptsPartial.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/_ViewImports.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/_ViewStart.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Developer/Github/Sky Health/Sky Health/Views/Shared/_Layout.cshtml]
+[J:/Developer/Github/Sky Health/Sky Health/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-6ce94i3wfo
