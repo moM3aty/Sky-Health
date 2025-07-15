@@ -242,7 +242,6 @@ E:\Developer\Github\Sky Health\Sky Health\obj\Debug\net9.0\Sky Health.pdb
 E:\Developer\Github\Sky Health\Sky Health\obj\Debug\net9.0\Sky Health.genruntimeconfig.cache
 E:\Developer\Github\Sky Health\Sky Health\obj\Debug\net9.0\ref\Sky Health.dll
 E:\Developer\Github\Sky Health\Sky Health\obj\Debug\net9.0\compressed\lghway0qvs-em27zd82g9.gz
-E:\Developer\Github\Sky Health\Sky Health\obj\Debug\net9.0\compressed\01qbzrhl9o-110yafs9ek.gz
 J:\Developer\Github\Sky Health\Sky Health\bin\Debug\net9.0\appsettings.Development.json
 J:\Developer\Github\Sky Health\Sky Health\bin\Debug\net9.0\appsettings.json
 J:\Developer\Github\Sky Health\Sky Health\bin\Debug\net9.0\Sky Health.staticwebassets.runtime.json
@@ -486,3 +485,4 @@ J:\Developer\Github\Sky Health\Sky Health\obj\Debug\net9.0\Sky Health.pdb
 J:\Developer\Github\Sky Health\Sky Health\obj\Debug\net9.0\Sky Health.genruntimeconfig.cache
 J:\Developer\Github\Sky Health\Sky Health\obj\Debug\net9.0\ref\Sky Health.dll
 J:\Developer\Github\Sky Health\Sky Health\obj\Debug\net9.0\compressed\01qbzrhl9o-3hnr33nrpp.gz
+E:\Developer\Github\Sky Health\Sky Health\obj\Debug\net9.0\compressed\01qbzrhl9o-onbc1v5lf5.gz

@@ -4,57 +4,75 @@
     ViewData["Title"] = Model.Name;
 }
 
-<div class="container section-padding">
-    <div class="row g-5">
-        <div class="col-lg-6" data-aos="fade-right">
-            <div class="position-relative">
-                <img src="@(Model.ImageUrl ?? "/images/placeholder.png")" alt="@Model.Name" class="img-fluid rounded shadow-lg">
+<div class="product-details-page">
+    <div class="container">
 
-                @if (Model.StockQuantity <= 0)
-                {
-                    <div class="out-of-stock-badge-large">نفذت الكمية</div>
-                }
-                else if (Model.OldPrice.HasValue && Model.OldPrice.Value > Model.Price)
-                {
-                    decimal discountPercentage = ((Model.OldPrice.Value - Model.Price) / Model.OldPrice.Value) * 100;
-                    int discountInt = (int)Math.Round(discountPercentage);
-                    <div class="discount-badge-large">خصم @(discountInt.ToHindi())%</div>
-                }
-            </div>
-        </div>
-        <div class="col-lg-6" data-aos="fade-left">
-            <h2 class="product-details-title">@Model.Name</h2>
-            <p class="fs-5 text-muted">القسم: @Model.Category.Name</p>
-
-            <div class="price-details my-3">
-                <span class="current-price-details">@Model.Price.ToHindi() جنيه</span>
-                @if (Model.OldPrice.HasValue)
-                {
-                    <span class="old-price-details">@Model.OldPrice.Value.ToHindi() جنيه</span>
-                }
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="product-image-gallery">
+                    @if (Model.OldPrice.HasValue && Model.OldPrice.Value > Model.Price)
+                    {
+                        decimal discountPercentage = ((Model.OldPrice.Value - Model.Price) / Model.OldPrice.Value) * 100;
+                        int discountInt = (int)Math.Round(discountPercentage);
+                        <div class="product-badge discount">خصم @(discountInt.ToHindi())%</div>
+                    }
+                    @if (Model.StockQuantity <= 0)
+                    {
+                        <div class="product-badge out-of-stock">نفذت الكمية</div>
+                    }
+                    <img src="@(Model.ImageUrl ?? "/images/placeholder.png")" alt="@Model.Name" class="img-fluid main-product-image">
+                </div>
             </div>
 
-            <p class="lh-lg">@Model.Description</p>
-
-            <hr class="my-4">
-
-            <div class="product-actions" style="max-width: 300px;">
-                @if (Model.StockQuantity > 0)
-                {
-                    <label class="form-label fw-bold">الكمية:</label>
-                    <div class="input-group mb-3">
-                        <button class="btn btn-outline-primary decrease-qty" type="button">-</button>
-                        <input type="number" class="form-control text-center quantity-input" value="1" min="1" max="@Model.StockQuantity">
-                        <button class="btn btn-outline-primary increase-qty" type="button">+</button>
+            <div class="col-lg-6">
+                <div class="product-info">
+                    <h1 class="product-title">@Model.Name</h1>
+                    <div class="product-meta">
+                        <span>القسم: <a href="#">@Model.Category.Name</a></span>
+                        @if (Model.Type == ProductType.Pharmacy && Model.UnitsPerBox.HasValue)
+                        {
+                            <span class="mx-2">|</span>
+                            <span>يحتوي على: @Model.UnitsPerBox.Value.ToHindi() وحدة/علبة</span>
+                        }
                     </div>
-                    <button class="btn btn-primary btn-lg w-100 add-to-cart-btn" data-product-id="@Model.Id">
-                        <i class="fas fa-shopping-cart me-2"></i> إضافة للسلة
-                    </button>
-                }
-                else
-                {
-                    <button class="btn btn-secondary btn-lg w-100" disabled>نفذت الكمية</button>
-                }
+
+                    <div class="product-price-details my-4">
+                        <span class="current-price text-danger">@Model.Price.ToHindi() جنيه</span>
+                        @if (Model.OldPrice.HasValue)
+                        {
+                            <span class="old-price">@Model.OldPrice.Value.ToHindi() جنيه</span>
+                        }
+                    </div>
+
+                    <p class="product-description">@Model.Description</p>
+
+                    <hr class="my-4">
+
+                    <div class="product-actions">
+                        @if (Model.StockQuantity > 0)
+                        {
+                            <div class="row align-items-center">
+                                <div class="col-md-5">
+                                    <label class="form-label fw-bold">الكمية:</label>
+                                    <div class="input-group quantity-selector">
+                                        <button class="btn btn-outline-secondary decrease-qty" type="button">-</button>
+                                        <input type="number" class="form-control text-center quantity-input" value="1" min="1" max="@Model.StockQuantity">
+                                        <button class="btn btn-outline-secondary increase-qty" type="button">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <button class="btn btn-primary btn-lg w-100 add-to-cart-btn mt-3 mt-md-0" data-product-id="@Model.Id">
+                                        <i class="fas fa-shopping-cart me-2"></i> إضافة للسلة
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <button class="btn btn-secondary btn-lg w-100" disabled>نفذت الكمية</button>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>
