@@ -76,6 +76,7 @@ namespace Sky_Health.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Description,Price,OldPrice,StockQuantity,UnitsPerBox,Type,IsFeatured,CategoryId")] Product product, IFormFile? imageFile)
         {
+            ModelState.Remove("Category");
             if (product.Type != ProductType.Pharmacy)
             {
                 product.UnitsPerBox = null;
@@ -108,6 +109,8 @@ namespace Sky_Health.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,OldPrice,StockQuantity,UnitsPerBox,Type,IsFeatured,CategoryId,ImageUrl")] Product product, IFormFile? imageFile)
         {
+            ModelState.Remove("Category");
+
             if (id != product.Id) return NotFound();
 
             if (product.Type != ProductType.Pharmacy)
