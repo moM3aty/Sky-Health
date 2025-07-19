@@ -128,7 +128,7 @@ namespace Sky_Health.Areas.Admin.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(string username, string password)
         {
-            if (username?.ToLower() == "admin" && password == "SkyHealth@2025")
+            if (username?.ToLower() == "admin" && password == "Admin123")
             {
                 var claims = new System.Collections.Generic.List<Claim>
                 {
