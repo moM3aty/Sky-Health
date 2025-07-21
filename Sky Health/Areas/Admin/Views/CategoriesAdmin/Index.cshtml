@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Sky_Health.Models.Category>
+@{
+    ViewData["Title"] = "إدارة الأقسام";
+}
+
+<div class="page-header">
+    <h1 class="page-title">إدارة الأقسام</h1>
+    <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus me-2"></i>إضافة قسم جديد</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>اسم القسم</th>
+                        <th class="text-center">عدد المنتجات</th>
+                        <th class="text-center">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><strong>@item.Name</strong></td>
+                            <td class="text-center">@item.Products.Count()</td>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary btn-circle" title="تعديل"><i class="fas fa-pen"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger btn-circle" title="حذف"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

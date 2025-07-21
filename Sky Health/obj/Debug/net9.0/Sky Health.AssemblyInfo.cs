@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sky Health")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+261f8f1ea9d1d9d47c9cc0de4037c4f59bc3dee0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7d3d767661c48c44e83fec264a395b160e42dd6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sky Health")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sky Health")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

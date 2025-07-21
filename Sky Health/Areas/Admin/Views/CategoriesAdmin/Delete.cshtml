@@ -1,0 +1,27 @@
+﻿@model Sky_Health.Models.Category
+@{
+    ViewData["Title"] = "حذف القسم";
+}
+
+<div class="page-header">
+    <h1 class="page-title">حذف القسم</h1>
+</div>
+
+<div class="alert alert-danger">
+    <h4 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>تأكيد الحذف</h4>
+    <p>هل أنت متأكد أنك تريد حذف قسم "<strong class="fw-bold">@Model.Name</strong>" بشكل نهائي؟ سيؤدي هذا إلى حذف جميع المنتجات المرتبطة به.</p>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">اسم القسم</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+        </dl>
+        <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id" method="post" class="mt-4">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash me-2"></i>نعم، قم بالحذف</button>
+            <a asp-action="Index" class="btn btn-light">إلغاء</a>
+        </form>
+    </div>
+</div>
